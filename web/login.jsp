@@ -18,7 +18,7 @@
 
 <div class="container">
 
-    <form id="loginForm" class="form-signin" method="post">
+    <form id="loginForm" class="form-signin" method="post" action="login.do">
         <h2 class="form-signin-heading col-lg-12">登录系统</h2>
         <input type="text" name="username" class="input-block-level" placeholder="账号">
         <input type="password" name="password" class="input-block-level" placeholder="密码">
