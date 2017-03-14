@@ -5,13 +5,14 @@
          version="3.1">
 
 
+    <display-name></display-name>
 
-        <servlet>
-            <servlet-name>Welcome</servlet-name>//要与下面的名称相同
-            <servlet-class>com.example.Welcome</servlet-class>//调用的类的位置
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>Welcome</servlet-name>
-            <url-pattern>/hello.do</url-pattern>//url标识
-        </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.LWT.servlet.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login.do</url-pattern>
+    </servlet-mapping>
 </web-app>
