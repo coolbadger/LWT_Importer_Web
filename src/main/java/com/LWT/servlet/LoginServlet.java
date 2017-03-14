@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -16,7 +17,17 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
-        resp.getOutputStream().println("OK");
+        HttpSession httpSession = req.getSession();
+        String userName = req.getParameter("username");
+        String password = req.getParameter("password");
+        if(userName.equals("admin")){
+            httpSession.setAttribute("username",userName);
+            httpSession.setAttribute("password",password);
+            resp.sendRedirect("/index.jsp");
+        }
+        else {
+            resp.sendRedirect("/login.js");
+        }
 
     }
 }
