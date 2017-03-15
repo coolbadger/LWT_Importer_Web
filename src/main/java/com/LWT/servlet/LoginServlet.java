@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
+        String destServer = req.getParameter("destserver");
         if(userName.equals("admin")){
             httpSession.setAttribute("username",userName);
             httpSession.setAttribute("password",password);
