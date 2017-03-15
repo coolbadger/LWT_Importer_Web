@@ -16,7 +16,14 @@
 <layout:override name="content">
     <div class="container">
 
-        <table id="table"></table>
+        <table id="table"
+               data-search="true"
+               data-show-refresh="true"
+               data-show-toggle="true"
+               data-show-columns="true"
+               data-show-export="true"
+               data-detail-view="true">
+        </table>
 
     </div>
     <script>
