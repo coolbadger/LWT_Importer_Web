@@ -9,6 +9,11 @@
 <%@ taglib uri="http://www.dreamlu.net/tags/jsp-layout.tld" prefix="layout" %>
 
 <layout:override name="checkLogin">
+    <%
+        if (session.getAttribute("username") != null) {
+            response.sendRedirect("/index.jsp");
+        }
+    %>
 </layout:override>
 
 <layout:override name="script">
