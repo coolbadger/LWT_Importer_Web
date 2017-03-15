@@ -9,6 +9,7 @@
 <%@ taglib uri="http://www.dreamlu.net/tags/jsp-layout.tld" prefix="layout" %>
 
 <layout:override name="content">
+    hello！
 </layout:override>
 
 <%@include file="tmpl/base.jsp" %>
