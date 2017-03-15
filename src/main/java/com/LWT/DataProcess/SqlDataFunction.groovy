@@ -67,7 +67,7 @@ WHERE
 ZYQ='4617' AND SFHQ = 'N' AND 
     ((A.YSGJ LIKE 'S' AND
     (select 1 from SWAVEMVCLW.ptddshipdict_lw@WZLW B
-    where B.SHIPDICTID = A.CBBH AND STATUS = '已发布'
+    where B.SHIPDICTID = A.CBBH AND status = '已发布'
       AND ROWNUM <= 1) IS NOT NULL
     )
     OR
@@ -101,7 +101,7 @@ ORDER BY 'JLBH'
     }
 
     List<GroovyRowResult> getVesselVisits(def vesselVisitID) {
-        sqlStr = "Select * from ptddshipdict_lw where SHIPDICTID ='${vesselVisitID}' AND STATUS = '已发布'"
+        sqlStr = "Select * from ptddshipdict_lw where SHIPDICTID ='${vesselVisitID}' AND status = '已发布'"
         return baseConn.rows(sqlStr)
     }
 

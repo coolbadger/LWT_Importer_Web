@@ -2,7 +2,7 @@ package com.LWT.DataProcess
 
 import com.LWT.Base.Global
 import com.LWT.Base.GlobalLogger
-import com.LWT.Base.N4Operator
+import com.LWT.connect.N4Operator
 import com.LWT.Entity.SNX_VesselVisit
 import com.LWT.Entity.SNX_Vessel
 import groovy.sql.Sql
@@ -114,8 +114,8 @@ class SNXProcess {
             GlobalLogger.myLogger.info("导数据有误！返回：")
             GlobalLogger.myLogger.info(result)
             GlobalLogger.myLogger.info("错误日志:")
-            GlobalLogger.myLogger.info(np.PAYLOAD)
-            GlobalLogger.myLogger.info(np.RESULTS)
+            GlobalLogger.myLogger.info(np.payload)
+            GlobalLogger.myLogger.info(np.results)
             GlobalLogger.myLogger.info("SNX为：")
             GlobalLogger.myLogger.info(inSNX)
             return result

@@ -1,6 +1,7 @@
 package com.LWT.Base
 
 import com.LWT.ImporterUI.MainFrameInfo
+import com.LWT.connect.N4Operator
 
 class Global {
     public static def LOOP_SECONDS = 10
@@ -78,14 +79,14 @@ class Global {
 
         N4Operator newOperator = new N4Operator()
 
-        newOperator.ARGO_SERVICE_URL = ArgoServiceURL
-        newOperator.Operator_Id = OperatorId
-        newOperator.Complex_Id = ComplexId
-        newOperator.Facility_Id = FacilityId
-        newOperator.Yard_Id = FacilityId
+        newOperator.argoServiceUrl = ArgoServiceURL
+        newOperator.operatorId = OperatorId
+        newOperator.complexId = ComplexId
+        newOperator.facilityId = FacilityId
+        newOperator.yardId = FacilityId
 
-        newOperator.USERNAME = UserName
-        newOperator.PASSWORD = Password
+        newOperator.username = UserName
+        newOperator.password = Password
 
         newOperator.initRequest()
         n4PortConnection = newOperator.isconnected
