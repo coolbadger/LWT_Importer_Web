@@ -7,6 +7,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="LWT_Importer_Web" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: net.dreamlu:jsp-layout:0.0.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.groovy:groovy-all:2.4.9" />
+          <element id="library" level="application" name="N4WebApiSmall25" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+        </element>
       </element>
     </root>
   </artifact>

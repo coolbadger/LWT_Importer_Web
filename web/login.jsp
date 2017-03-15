@@ -27,7 +27,14 @@
             <h2 class="form-signin-heading col-lg-12">登录系统</h2>
             <input type="text" name="username" class="input-block-level" placeholder="账号">
             <input type="password" name="password" class="input-block-level" placeholder="密码">
-
+            <div class="radio">
+                <label>
+                    <input name="destserver" type="radio" value="testserver">测试服务器
+                </label>
+                <label>
+                    <input name="destserver" type="radio" value="productserver" checked>正式服务器
+                </label>
+            </div>
             <div style="padding: 10px 50px">
                 <button id="loginBtn" class="btn btn-lg btn-block btn-primary" type="submit">登录
                 </button>
