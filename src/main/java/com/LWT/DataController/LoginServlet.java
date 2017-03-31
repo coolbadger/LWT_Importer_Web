@@ -1,4 +1,7 @@
-package com.LWT.servlet;
+package com.LWT.DataController;
+
+
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

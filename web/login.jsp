@@ -42,6 +42,6 @@
         </form>
     </div>
 </layout:override>
-
+<layout:block name="top"></layout:block>
 <%@include file="/tmpl/base.jsp" %>
 
