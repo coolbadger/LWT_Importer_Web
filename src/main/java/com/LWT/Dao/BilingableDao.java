@@ -33,6 +33,7 @@ public class BilingableDao {
 
             while(rs.next()){
                 VW_N4_Bilingable vw=new VW_N4_Bilingable();
+
                 vw.setRecordID(rs.getString("JLBH"));//记录编号
                 vw.setTransID(rs.getString("CBBH"));//船舶编号
                 vw.setWorkArea(rs.getString("ZYQ"));//作业区

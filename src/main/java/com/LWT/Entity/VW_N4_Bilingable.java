@@ -31,9 +31,7 @@ public class VW_N4_Bilingable {
     private String DirectTake;      //是否现提
     private String OperateType;     //操作类型
 
-    //
-
-    public String getRecordID(String jlbh) {
+    public String getRecordID() {
         return RecordID;
     }
 
@@ -41,7 +39,7 @@ public class VW_N4_Bilingable {
         RecordID = recordID;
     }
 
-    public String getTransID(String cbbh) {
+    public String getTransID() {
         return TransID;
     }
 
@@ -49,7 +47,7 @@ public class VW_N4_Bilingable {
         TransID = transID;
     }
 
-    public String getWorkArea(String hz) {
+    public String getWorkArea() {
         return WorkArea;
     }
 

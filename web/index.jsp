@@ -17,168 +17,149 @@
 </layout:override>
 
 <layout:override name="content">
-
-    <%
-        BilingableDao bd=new BilingableDao();
-        List<VW_N4_Bilingable> vw=bd.getAllData();
-        for(int i=0;i<vw.size();i++){
-            VW_N4_Bilingable vnb=vw.get(i);
-
-    %><div>
-     <p><%=vnb.toString()%></p>
-      </div>
-        <%
-            }
-        %>
-
+    <form method="post" action="/test.do">
     <div class="container" style="width: 98%;">
-        <div class="top">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#">首页</a>
-                </li>
-                <li class="disabled"><a href="#">资料</a></li>
-                <li><a href="#">数据分析</a></li>
-                <li class="dropdown pull-right"><a href="#" data-toggle="dropdown" class="dropdown-toggle">更多<strong
-                        class="caret"></strong></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">操作</a></li>
-                        <li><a href="#">刷新</a></li>
-                        <li><a href="#">退出</a></li>
-                        <li class="divider">分隔</li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="maincontent" style="height: 80%">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center text-muted">龙湾散货系统</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="toolbar" class="btn-group">
+                        <button id="btn_edit" type="submit" class="btn btn-info" onclick="return confirm('确定执行导入吗?')">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>执行导入
+                        </button>
+                    </div>
+                    <table id="table" data-toggle="table" data-url="" data-method="post"
+                           data-query-params="queryParams"
+                           data-toolbar="#toolbar"
+                           data-pagination="true"
+                           data-search="true"
+                           data-show-refresh="true"
+                           data-show-toggle="true"
+                           data-show-columns="true"
+                           data-page-size="10">
+                    </table>
+                </div>
+            </div>
         </div>
-        <div style="height: 80%">
-            <table id="table"
-                   class="table table-hover table-bordered table-striped"
-                   data-search="true"
-                   data-show-refresh="true"
-                   data-show-toggle="true"
-                   data-show-columns="true"
-                   data-show-export="true"
-                   data-detail-view="true"
-                   data-pagination="true"
-                   data-show-pagination-switch="true"
-                   data-page-list="[10, 25, ALL]">
-            </table>
-        </div>
-
     </div>
+    </form>
     <script>
         var $table = $('#table');
         function initTable() {
             $table.bootstrapTable({
                 columns: [{
+                    checkbox:true,
+                    align:'center'
+                }, {
                     field: 'JLBH',
                     title: '记录编号'
-                }, {
+                },{
                     field: 'CBBH',
                     title: '船舶编号'
-                }, {
-                    field: 'ZYQ',
-                    title: '作业区'
-                }, {
+                },{
                     field: 'HZ',
                     title: '货种'
-                }, {
-                    field: 'SHR',
-                    title: '收货人编码'
+                },{
+                    field: 'VESSELCN',
+                    title: '船名航次'
+                },{
+                    field: 'ZYQ',
+                    title: '作业区'
+                },{
+                    field: 'YSGJ',
+                    title: '运输工具'
                 },{
                     field: 'ZYLX',
                     title: '作业类型'
-                }, {
-                    field: 'YSGJ',
-                    title: '运输工具'
-                }, {
+                },{
+                    field: 'SHR',
+                    title: '收货人编码'
+                },{
                     field: 'FHR',
                     title: '发货人编码'
-                }, {
+                },{
+                    field: 'SHR_NAME',
+                    title: '收货人名称'
+                },{
                     field: 'SFXT',
-                    algin:'center',
-                    valgin:'middle',
                     title: '是否现提'
-                }, {
+                },{
                     field: 'CZLX',
                     title: '操作类型'
                 },{
-                    field: 'DS',
-                    title: '吨数'
-                }, {
-                    field: 'ZYSJ',
-                    title: '作业时间'
-                }, {
                     field: 'MXHZ',
                     title: '明细货种'
-                }, {
+                },{
                     field: 'MTLB',
                     title: '码头类别'
-                }, {
+                },{
+                    field: 'FSXM_NAME',
+                    title: '费收项目'
+                },{
+                    field: 'PREPOPTNAMEID',
+                    title: '装货港'
+                },{
+                    field: 'ZYSJ',
+                    title: '作业时间'
+                },{
+                    field: 'DS',
+                    title: '吨数'
+                },{
                     field: 'LJDS',
                     title: '累计吨数'
                 },{
                     field: 'ZLJDS',
                     title: '总累计吨数'
-                }, {
-                    field: 'FSXM_NAME',
-                    title: '费收项目'
-                }, {
-                    field: 'PREPOPTNAMEID',
-                    title: '装货港'
-                }, {
-                    field: 'VESSELCN',
-                    title: '船名航次'
-                }, {
-                    field: 'SHR_NAME',
-                    title: '收货人名称'
                 }],
-                data:[{
-                    JLBH:"001",
-                    CBBH:"SH0512",
-                    ZYQ:"上海浦东",
-                    HZ:"散货",
-                    SHR:"W001",
-                    ZYLX:"普通",
-                    YSGJ:"货轮",
-                    FHR:"J001",
-                    SFXT:"是",
-                    CZLX:"起吊",
-                    DS:"10T",
-                    ZYSJ:"2016-10-01",
-                    MXHZ:"普通",
-                    MTLB:"码头类别",
-                    LJDS:"20T",
-                    ZLJDS:"100T",
-                    FSXM_NAME:"费收项目",
-                    PREPOPTNAMEID:"温州",
-                    VESSELCN:"G20",
-                    SHR_NAME:"Q231"
-                },{
-                    JLBH:"001",
-                    CBBH:"SH098",
-                    ZYQ:"上海浦东",
-                    HZ:"散货",
-                    SHR:"W001",
-                    ZYLX:"普通",
-                    YSGJ:"货轮",
-                    FHR:"J001",
-                    SFXT:"是",
-                    CZLX:"起吊",
-                    DS:"10T",
-                    ZYSJ:"2016-10-01",
-                    MXHZ:"普通",
-                    MTLB:"码头类别",
-                    LJDS:"20T",
-                    ZLJDS:"100T",
-                    FSXM_NAME:"费收项目",
-                    PREPOPTNAMEID:"温州",
-                    VESSELCN:"G20",
-                    SHR_NAME:"Q231"
-                }]
+
+                data:[
+
+                    <%
+                        String text="无";
+                        BilingableDao bilingableDao=new BilingableDao();
+                        List<VW_N4_Bilingable> list_vw=bilingableDao.getAllData();
+                        for(int i=0;i<list_vw.size();i++){
+                            VW_N4_Bilingable vnb=list_vw.get(i);
+
+                    %>
+                    {
+                        JLBH:"<%=vnb.getRecordID()==null ?  text:vnb.getRecordID() %>",
+                        CBBH:"<%=vnb.getTransID()==null ?  text: vnb.getTransID()%>",
+                        ZYQ:"<%=vnb.getWorkArea()==null ?  text: vnb.getWorkArea()%>",
+                        HZ:"<%=vnb.getCargoSpec()==null ?  text: vnb.getCargoSpec()%>",
+                        SHR:"<%=vnb.getConsignee()==null ?  text: vnb.getConsignee()%>",
+                        ZYLX:"<%=vnb.getWorkType()==null ?  text: vnb.getWorkType()%>",
+                        YSGJ:"<%=vnb.getTransType()==null ?  text: vnb.getTransType()%>",
+                        FHR:"<%=vnb.getConsignee()==null ?  text: vnb.getConsignee()%>",
+                        SFXT:"<%=vnb.getDirectTake()==null ?  text: vnb.getDirectTake()%>",
+                        CZLX:"<%=vnb.getOperateType()==null ?  text: vnb.getOperateType()%>",
+                        DS:"<%=vnb.getTonsWeight()==null ?  text: Double.toString(vnb.getTonsWeight())%>",
+                        ZYSJ:"<%=vnb.getWorkingTime()==null ?  text: vnb.getWorkingTime()%>",
+                        MXHZ:"<%=vnb.getDetailCargoType()==null ?  text: vnb.getDetailCargoType()%>",
+                        MTLB:"<%=vnb.getPortType()==null ?  text: vnb.getPortType()%>",
+                        LJDS:"<%=vnb.getTonsWeightSum()==null ?  text: Double.toString(vnb.getTonsWeightSum())%>",
+                        ZLJDS:"<%=vnb.getAllTonsWeightSum()==null ?  text: Double.toString(vnb.getAllTonsWeightSum())%>",
+                        FSXM_NAME:"<%=vnb.getFeeItem()==null ?  text: vnb.getFeeItem()%>",
+                        PREPOPTNAMEID:"<%=vnb.getShipsnameNumber()==null ?  text: vnb.getShipsnameNumber()%>",
+                        VESSELCN:"<%=vnb.getShipmentHarbor()==null ?  text: vnb.getShipmentHarbor()%>",
+                        SHR_NAME:"<%=vnb.getConsignorName()==null ?  text: vnb.getConsignorName()%>"
+
+                    },
+                    <%
+                        }
+                    %>
+
+                ]
+
+
+
             });
         }
         initTable();
+
+
     </script>
 </layout:override>
 

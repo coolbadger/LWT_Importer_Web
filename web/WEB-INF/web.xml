@@ -5,12 +5,12 @@
          id="WebApp_ID" version="2.5">
 
     <servlet>
-        <servlet-name>BilingableDaoServlet</servlet-name>
-        <servlet-class>com.LWT.DataController.BilingableDaoServlet</servlet-class>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.LWT.DataController.TestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>BilingableDaoServlet</servlet-name>
-        <url-pattern>/Bilingable.do</url-pattern>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test.do</url-pattern>
     </servlet-mapping>
 
 

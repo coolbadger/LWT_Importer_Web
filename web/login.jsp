@@ -21,6 +21,7 @@
 </layout:override>
 
 <layout:override name="content">
+
     <div class="container">
 
         <form id="loginForm" class="form-signin" method="post" action="login.do">
