@@ -9,13 +9,13 @@ import javax.swing.text.PlainDocument;
  */
 public class MainFrameInfo {
     //初始化若干条件
-    public boolean p_IsTestEnv;
-    public boolean p_IsDateEnable;
-    public boolean p_IsWriteBack;
-    public boolean p_IsUnitCount;
-    public String p_UnitCount;
-    public String p_DateStart;
-    public String p_DateEnd;
+    public boolean p_IsTestEnv;//测试服务器
+    public boolean p_IsDateEnable;//正式服务器
+    public boolean p_IsWriteBack;//回写数据库
+    public boolean p_IsUnitCount;//指定条数
+    public String p_UnitCount;//数目
+    public String p_DateStart;//开始日期
+    public String p_DateEnd;//结束日期
 
     public MainFrameInfo(){
         p_IsTestEnv = true;

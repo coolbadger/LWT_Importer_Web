@@ -43,7 +43,6 @@ class N4Operator {
             this.scope.setComplexId(this.complexId)
             this.scope.setFacilityId(this.facilityId)
             this.scope.setYardId(this.yardId)
-
             // 确定Web服务主机
             this.service = new ArgoServiceLocator()
             this.port = this.service.getArgoServicePort(new URL(this.argoServiceUrl))

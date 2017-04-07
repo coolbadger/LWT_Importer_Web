@@ -51,6 +51,7 @@
           <element id="file-copy" path="D:/N4WebApiSmall/commons-validator.jar" />
           <element id="file-copy" path="D:/N4WebApiSmall/commons-collections.jar" />
           <element id="file-copy" path="D:/jar/ojdbc14.jar" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.6.RELEASE" />
         </element>
       </element>
     </root>

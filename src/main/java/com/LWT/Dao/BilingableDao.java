@@ -27,7 +27,7 @@ public class BilingableDao {
             String password = "wzlwjk";
             con = DriverManager.getConnection(url, user, password);
             System.out.println("连接成功！");
-            String sql = "select * from VW_N4_BILLINGABLE";
+            String sql = "select * from VW_N4_BILLINGABLE WHERE ROWNUM <= 10 ";
             pre = con.prepareStatement(sql);
             rs= pre.executeQuery();
 
