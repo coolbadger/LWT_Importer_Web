@@ -167,10 +167,6 @@
             });
         }
         initTable();
-        /*        "checkeddata="+row.JLBH+","+row.CBBH+","+row.HZ+","+row.VESSELCN+","+row.ZYQ+","+row.YSGJ+","+row.ZYLX
-         +","+row.SHR+","+row.FHR+","+row.SHR_NAME+","+row.SFXT+","+row.CZLX+","+row.MXHZ+","+row.MTLB+","+row.FSXM_NAME
-         +","+row.PREPOPTNAMEID+","+row.ZYSJ+","+row.DS+","+row.LJDS+","+row.ZLJDS,*/
-
         function getIdSelections() {
             return $.map($table.bootstrapTable('getSelections'), function (row) {
                 $.ajax({
@@ -186,10 +182,26 @@
                     }
                 });
 
-                return row.JLBH;
+                //return row.JLBH;
             });
         }
 
+
+        function screening() {
+            $.ajax({
+                //contentType: "application/json;charset=utf-8",
+                url: "/test.do",
+                data:1,
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (err) {
+                    console.log(err.status);
+                }
+            });
+        }
 
     </script>
 </layout:override>

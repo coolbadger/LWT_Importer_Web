@@ -5,6 +5,15 @@
          id="WebApp_ID" version="2.5">
 
     <servlet>
+        <servlet-name>ScreeningServlet</servlet-name>
+        <servlet-class>com.LWT.DataController.ScreeningServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ScreeningServlet</servlet-name>
+        <url-pattern>/screening.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>com.LWT.DataController.TestServlet</servlet-class>
     </servlet>
@@ -12,7 +21,6 @@
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/test.do</url-pattern>
     </servlet-mapping>
-
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
