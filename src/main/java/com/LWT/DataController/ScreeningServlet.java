@@ -1,6 +1,9 @@
 package com.LWT.DataController;
 
+import com.LWT.Entity.Conversion;
 import com.LWT.Entity.VW_N4_Bilingable;
+import com.google.gson.Gson;
+import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +42,7 @@ public class ScreeningServlet extends HttpServlet {
             PreparedStatement pre = null;
             ResultSet rs = null;
 
-            List<VW_N4_Bilingable> list=new ArrayList<VW_N4_Bilingable>();
+            List<Conversion> list=new ArrayList<Conversion>();
             try{
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 System.out.println("开始尝试连接数据库！");
@@ -55,28 +58,28 @@ public class ScreeningServlet extends HttpServlet {
                 rs= pre.executeQuery();
 
                 while(rs.next()){
-                    VW_N4_Bilingable vw=new VW_N4_Bilingable();
+                    Conversion vw=new Conversion();
 
-                    vw.setRecordID(rs.getString("JLBH"));//记录编号
-                    vw.setTransID(rs.getString("CBBH"));//船舶编号
-                    vw.setWorkArea(rs.getString("ZYQ"));//作业区
-                    vw.setCargoSpec(rs.getString("HZ"));//货种
-                    vw.setConsignee(rs.getString("SHR"));//收货人编码
-                    vw.setWorkType(rs.getString("ZYLX"));//作业类型
-                    vw.setTransType(rs.getString("YSGJ"));//运输工具
-                    vw.setConsignor(rs.getString("FHR"));//发货人编码
-                    vw.setDirectTake(rs.getString("SFXT"));//是否现提
-                    vw.setOperateType(rs.getString("CZLX"));//操作类型
-                    vw.setTonsWeight(rs.getDouble("DS"));//吨数
-                    vw.setWorkingTime(rs.getString("ZYSJ"));//作业时间
-                    vw.setDetailCargoType(rs.getString("MXHZ"));//明细货种
-                    vw.setPortType(rs.getString("MTLB"));//码头类别
-                    vw.setTonsWeightSum(rs.getDouble("LJDS"));//累计吨数
-                    vw.setAllTonsWeightSum(rs.getDouble("ZLJDS"));//总累计吨数
-                    vw.setFeeItem(rs.getString("FSXM_NAME"));//费收项目
-                    vw.setShipmentHarbor(rs.getString("PREPORTNAMEID"));//装货港
-                    vw.setShipsnameNumber(rs.getString("VESSELCN"));//船名航次
-                    vw.setConsignorName(rs.getString("SHR_NAME"));//收货人名称
+                    vw.setJLBH(rs.getString("JLBH"));//记录编号
+                    vw.setCBBH(rs.getString("CBBH"));//船舶编号
+                    vw.setZYQ(rs.getString("ZYQ"));//作业区
+                    vw.setHZ(rs.getString("HZ"));//货种
+                    vw.setSHR(rs.getString("SHR"));//收货人编码
+                    vw.setZYLX(rs.getString("ZYLX"));//作业类型
+                    vw.setYSGJ(rs.getString("YSGJ"));//运输工具
+                    vw.setFHR(rs.getString("FHR"));//发货人编码
+                    vw.setSFXT(rs.getString("SFXT"));//是否现提
+                    vw.setCZLX(rs.getString("CZLX"));//操作类型
+                    vw.setDS(rs.getDouble("DS"));//吨数
+                    vw.setZYSJ(rs.getString("ZYSJ"));//作业时间
+                    vw.setMXHZ(rs.getString("MXHZ"));//明细货种
+                    vw.setMTLB(rs.getString("MTLB"));//码头类别
+                    vw.setLJDS(rs.getDouble("LJDS"));//累计吨数
+                    vw.setZLJDS(rs.getDouble("ZLJDS"));//总累计吨数
+                    vw.setFSXM_NAME(rs.getString("FSXM_NAME"));//费收项目
+                    vw.setPREPORTNAMEID(rs.getString("PREPORTNAMEID"));//装货港
+                    vw.setVESSELCN(rs.getString("VESSELCN"));//船名航次
+                    vw.setSHR_NAME(rs.getString("SHR_NAME"));//收货人名称
                     list.add(vw);
                 }
 
@@ -102,14 +105,12 @@ public class ScreeningServlet extends HttpServlet {
 
             }
 
-
-
-        String aa = "ysm";
-        System.out.println("qwertyuio");
+        Gson gson = new Gson();
+        String s = gson.toJson(list);
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        out.write(String.valueOf(list));
+        out.write(String.valueOf(s));
         out.close();
 
     }

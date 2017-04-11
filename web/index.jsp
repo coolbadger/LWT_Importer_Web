@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.dreamlu.net/tags/jsp-layout.tld" prefix="layout" %>
 
 <layout:override name="script">
-    <link type="text/css" rel="stylesheet" href="/static/dateTime/css/admin.css" />
+    <link type="text/css" rel="stylesheet" href="/static/dateTime/css/admin.css"/>
     <script src="/static/bootstrap-table/js/bootstrap-table.js"></script>
     <link href="/static/bootstrap-table/css/bootstrap-table.css" rel="stylesheet">
 </layout:override>
@@ -31,7 +31,7 @@
 
                         <div class="wrap">
                             <ul class="sub-nav">
-                                <li ><a href="javascript:void(0);">基础信息</a></li>
+                                <li><a href="javascript:void(0);">基础信息</a></li>
                             </ul>
                             <ul class="doc-set">
                                 <li>
@@ -39,11 +39,16 @@
                                         <p>时间格式为 11-4月 -17</p>
                                     </div>
                                     <div class="doc-dd">
-                                        <input id="KSSJ" name="" type="text" class="text-box" value="" placeholder="开始时间≥当前时间" title="开始时间≥当前时间"  style="cursor:pointer;"/>
-                                        <input id="JSSJ" name="" type="text" class="text-box" value="" placeholder="结束时间>开始时间" title="结束时间>开始时间"  style="cursor:pointer;"/>
-                                        <input id="SHR" name="" type="text" class="text-box" value=""  placeholder="收货人编码" title="收货人编码"  style="cursor:pointer;"/>
-                                        <input id="FSXM_NAME"  name="" type="text" class="text-box" value="" placeholder="费收项目" title="费收项目"  style="cursor:pointer;"/>
-                                        <input type="button" value="提交" class="testSubmit" onclick="testSubmit()" style="width: 90px;height: 50px;">
+                                        <input id="KSSJ" name="" type="text" class="text-box" value=""
+                                               placeholder="开始时间≥当前时间" title="开始时间≥当前时间" style="cursor:pointer;"/>
+                                        <input id="JSSJ" name="" type="text" class="text-box" value=""
+                                               placeholder="结束时间>开始时间" title="结束时间>开始时间" style="cursor:pointer;"/>
+                                        <input id="SHR" name="" type="text" class="text-box" value=""
+                                               placeholder="收货人编码" title="收货人编码" style="cursor:pointer;"/>
+                                        <input id="FSXM_NAME" name="" type="text" class="text-box" value=""
+                                               placeholder="费收项目" title="费收项目" style="cursor:pointer;"/>
+                                        <input type="button" value="提交" class="testSubmit" onclick="testSubmit()"
+                                               style="width: 90px;height: 50px;">
                                     </div>
                                 </li>
                             </ul>
@@ -145,44 +150,7 @@
                         title: '总累计吨数'
                     }],
 
-                data: [
-
-                    <%
-                        String text="无";
-                        BilingableDao bilingableDao=new BilingableDao();
-                        List<VW_N4_Bilingable> list_vw=bilingableDao.getAllData();
-                        for(int i=0;i<list_vw.size();i++){
-                            VW_N4_Bilingable vnb=list_vw.get(i);
-
-                    %>
-                    {
-                        JLBH: "<%=vnb.getRecordID()==null ?  text:vnb.getRecordID() %>",
-                        CBBH: "<%=vnb.getTransID()==null ?  text: vnb.getTransID()%>",
-                        ZYQ: "<%=vnb.getWorkArea()==null ?  text: vnb.getWorkArea()%>",
-                        HZ: "<%=vnb.getCargoSpec()==null ?  text: vnb.getCargoSpec()%>",
-                        SHR: "<%=vnb.getConsignee()==null ?  text: vnb.getConsignee()%>",
-                        ZYLX: "<%=vnb.getWorkType()==null ?  text: vnb.getWorkType()%>",
-                        YSGJ: "<%=vnb.getTransType()==null ?  text: vnb.getTransType()%>",
-                        FHR: "<%=vnb.getConsignee()==null ?  text: vnb.getConsignee()%>",
-                        SFXT: "<%=vnb.getDirectTake()==null ?  text: vnb.getDirectTake()%>",
-                        CZLX: "<%=vnb.getOperateType()==null ?  text: vnb.getOperateType()%>",
-                        DS: "<%=vnb.getTonsWeight()==null ?  text: Double.toString(vnb.getTonsWeight())%>",
-                        ZYSJ: "<%=vnb.getWorkingTime()==null ?  text: vnb.getWorkingTime()%>",
-                        MXHZ: "<%=vnb.getDetailCargoType()==null ?  text: vnb.getDetailCargoType()%>",
-                        MTLB: "<%=vnb.getPortType()==null ?  text: vnb.getPortType()%>",
-                        LJDS: "<%=vnb.getTonsWeightSum()==null ?  text: Double.toString(vnb.getTonsWeightSum())%>",
-                        ZLJDS: "<%=vnb.getAllTonsWeightSum()==null ?  text: Double.toString(vnb.getAllTonsWeightSum())%>",
-                        FSXM_NAME: "<%=vnb.getFeeItem()==null ?  text: vnb.getFeeItem()%>",
-                        PREPORTNAMEID: "<%=vnb.getShipsnameNumber()==null ?  text: vnb.getShipsnameNumber()%>",
-                        VESSELCN: "<%=vnb.getShipmentHarbor()==null ?  text: vnb.getShipmentHarbor()%>",
-                        SHR_NAME: "<%=vnb.getConsignorName()==null ?  text: vnb.getConsignorName()%>"
-
-                    },
-                    <%
-                        }
-                    %>
-
-                ]
+                data: [{"JLBH":"0114617","CBBH":"475900925","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":17889.0,"ZYSJ":"2017-04-10 11:46:17.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"广州","VESSELCN":"富泉海-170409","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"0111914","CBBH":"477038633","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5000.0,"ZYSJ":"2017-04-10 11:19:14.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"正荣3-1711","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"9092150","CBBH":"476361417","ZYQ":"4617","HZ":"0542","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":6066.0,"ZYSJ":"2017-04-09 09:21:50.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"福州","VESSELCN":"九华山2-170407","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"9092123","CBBH":"477044066","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":9000.0,"ZYSJ":"2017-04-09 09:21:23.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"永麒-170408","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"9092100","CBBH":"477042460","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5056.0,"ZYSJ":"2017-04-09 09:21:00.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"航安轮-170409","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"7091958","CBBH":"475900690","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5055.0,"ZYSJ":"2017-04-07 09:19:58.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"航顺轮-170405","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"6140146","CBBH":"475900331","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5002.0,"ZYSJ":"2017-04-06 14:01:46.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"兴龙城-170405","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"6140105","CBBH":"475878811","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":8500.0,"ZYSJ":"2017-04-06 14:01:05.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"弘泰888-170404","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"6135946","CBBH":"475900686","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5100.0,"ZYSJ":"2017-04-06 13:59:46.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"兴中盛-170405","SHR_NAME":"温州中港混凝土有限公司"}]
 
 
             });
@@ -210,7 +178,7 @@
             $.ajax({
                 //contentType: "application/json;charset=utf-8",
                 url: "/test.do",
-                data:1,
+                data: 1,
                 type: "post",
                 dataType: "json",
                 success: function (data) {
@@ -224,19 +192,21 @@
 
         function testSubmit() {
 
-            var shr=document.getElementById("SHR").value;
-            var kssj=document.getElementById("KSSJ").value;
-            var jssj=document.getElementById("JSSJ").value;
-            var fsxm=document.getElementById("FSXM_NAME").value;
+            var shr = document.getElementById("SHR").value;
+            var kssj = document.getElementById("KSSJ").value;
+            var jssj = document.getElementById("JSSJ").value;
+            var fsxm = document.getElementById("FSXM_NAME").value;
             //console.log("开始时间="+kssj+":结束时间="+jssj+":SHR="+shr+":费收="+fsxm)
 
             $.ajax({
                 //contentType: "application/json;charset=utf-8",
-                url: "/screening.do?FSXM_NAME="+fsxm+"&KSSJ="+kssj+"&JSSJ="+jssj+"&SHR="+shr,
+                url: "/screening.do?FSXM_NAME=" + fsxm + "&KSSJ=" + kssj + "&JSSJ=" + jssj + "&SHR=" + shr,
                 type: "post",
                 success: function (data) {
-                    $('#table').bootstrapTable('load',data);
-                    console.log(data)
+                    console.log(data);
+//                    $table.bootstrapTable("removeAll");
+                    var jsonData = JSON.parse(data);
+                    $table.bootstrapTable("load", jsonData);
                 },
                 error: function (err) {
                     console.log(err.status);
@@ -244,10 +214,18 @@
             });
         }
 
+
+        function screenings(data) {
+            console.log(data)
+
+            $table.bootstrapTable("removeAll");
+            $table.bootstrapTable("load", data);
+            //$table.bootstrapTable("resetView");
+        }
     </script>
 
     <script type="text/javascript">
-        $( "input[name='act_start_time'],input[name='act_stop_time']" ).datetimepicker();
+        $("input[name='act_start_time'],input[name='act_stop_time']").datetimepicker();
     </script>
 </layout:override>
 
