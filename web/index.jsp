@@ -22,7 +22,7 @@
 <layout:override name="content">
     <form method="post" action="/test.do">
         <div class="container" style="width: 98%;">
-            <div class="maincontent" style="height: 60%">
+            <div class="maincontent" style="height: 50%">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="text-center text-muted">龙湾散货系统</h3>
@@ -39,16 +39,16 @@
                                         <p>时间格式为 11-4月 -17</p>
                                     </div>
                                     <div class="doc-dd">
-                                        <input id="KSSJ" name="" type="text" class="text-box" value=""
-                                               placeholder="开始时间≥当前时间" title="开始时间≥当前时间" style="cursor:pointer;"/>
-                                        <input id="JSSJ" name="" type="text" class="text-box" value=""
-                                               placeholder="结束时间>开始时间" title="结束时间>开始时间" style="cursor:pointer;"/>
-                                        <input id="SHR" name="" type="text" class="text-box" value=""
+                                        &nbsp;&nbsp; 开始时间：<input id="KSSJ" name="" type="text" class="text-box" value=""
+                                               placeholder="开始时间" title="开始时间" style="cursor:pointer;"/>
+                                        结束时间：<input id="JSSJ" name="" type="text" class="text-box" value=""
+                                               placeholder="结束时间" title="结束时间" style="cursor:pointer;"/><br/>
+                                        收货人编码：<input id="SHR" name="" type="text" class="text-box" value=""
                                                placeholder="收货人编码" title="收货人编码" style="cursor:pointer;"/>
-                                        <input id="FSXM_NAME" name="" type="text" class="text-box" value=""
+                                        费收项目：<input id="FSXM_NAME" name="" type="text" class="text-box" value=""
                                                placeholder="费收项目" title="费收项目" style="cursor:pointer;"/>
                                         <input type="button" value="提交" class="testSubmit" onclick="testSubmit()"
-                                               style="width: 90px;height: 50px;">
+                                               style="width: 90px;height: 40px;">
                                     </div>
                                 </li>
                             </ul>
