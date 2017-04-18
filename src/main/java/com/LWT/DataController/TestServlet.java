@@ -60,7 +60,7 @@ public class TestServlet extends HttpServlet {
         String MTLB = req.getParameter("MTLB");
         String FSXM_NAME = req.getParameter("FSXM_NAME");
         String PREPORTNAMEID = req.getParameter("PREPORTNAMEID");
-        String ZYSJ = req.getParameter("ZYSJ");
+        String ZYSJ = req.getParameter("ZYSJ").substring(0,req.getParameter("ZYSJ").length()-2);
         String DS = req.getParameter("DS");
         String LJDS = req.getParameter("LJDS");
         String ZLJDS = req.getParameter("ZLJDS");
