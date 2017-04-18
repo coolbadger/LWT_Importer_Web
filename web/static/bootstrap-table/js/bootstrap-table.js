@@ -384,6 +384,13 @@
             return false;
         },
         onClickCell: function (field, value, row, $element) {
+            console.log(value )
+            console.log(row )
+            if(row.VESSELCN==value){
+
+            }else if(row.SHR_NAME==value){
+
+            }
             return false;
         },
         onDblClickCell: function (field, value, row, $element) {

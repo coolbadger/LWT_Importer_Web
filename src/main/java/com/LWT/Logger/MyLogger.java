@@ -22,7 +22,7 @@ public class MyLogger {
     //信息内容以及是否回写文件
     public void info(String infoMessage, boolean writeFile) {
         infoMessage += "\n";
-        myLoggerListener.LogInfo(infoMessage);
+//        myLoggerListener.LogInfo(infoMessage);
         if (writeFile) {
             myLogger.info(infoMessage);
         }

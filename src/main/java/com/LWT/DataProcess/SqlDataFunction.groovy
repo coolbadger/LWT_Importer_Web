@@ -15,7 +15,7 @@ class SqlDataFunction {
 
     SqlDataFunction() {
         bulkConn = Global.bulkOracleConnection.conn
-        baseConn = Global.baseOracleConnection.conn
+//        baseConn = Global.baseOracleConnection.conn
         n4Conn = Global.n4OracleConnection.conn
     }
 

@@ -55,7 +55,7 @@ class SNX_BBK_Unit {
         VesselVisitList = new ArrayList<SNX_VesselVisit>()
 
         //默认常值
-        this.Line = "-1"
+        this.Line = "BBK"
         this.UnitSQLID = result_bbk.RecordID
 
         //生成新UnitID 记录编号-收货人-作业类型-货种-运输工具
@@ -78,6 +78,7 @@ class SNX_BBK_Unit {
         this.LoadingType = result_bbk.LoadingType
         this.DataSource = result_bbk.DataSource
         this.DirTakeType = result_bbk.DirTakeType
+        this.IBVisit = "GEN_VESSEL"
 
         //根据装卸船类型，区分相关内容
         if (result_bbk.WorkType == "X") {
@@ -86,7 +87,6 @@ class SNX_BBK_Unit {
                 //船舶类型
                 Category = "IMPORT"
                 TransState = "RETIRED"
-                IBVisit = result_bbk.TransID + 'S'
                 IBMode = "VESSEL"
                 OBVisit = "GEN_TRUCK"
                 OBMode = "TRUCK"
@@ -101,9 +101,8 @@ class SNX_BBK_Unit {
             switch (result_bbk.TransType) {
                 case "S":
                     Category = 'EXPORT'
-                    IBVisit = result_bbk.VesselID + 'S'
                     IBMode = "VESSEL"
-                    OBVisit = result_bbk.TransID + 'S'
+                    OBVisit = "GEN_VESSEL"
                     OBMode = "VESSEL"
                     IsYard = true
                     break;
@@ -124,7 +123,6 @@ class SNX_BBK_Unit {
                 default:
                     Category = 'EXPORT'
                     Category = 'IMPORT'
-                    IBVisit = result_bbk.TransID + 'S'
                     IBMode = "VESSEL"
                     OBVisit = "GEN_TRUCK"
                     OBMode = "TRUCK"
@@ -140,28 +138,28 @@ class SNX_BBK_Unit {
 
 
         //根据进出口类型，初始化船期列表
-        def IbVesselVisitID
-        def ObVesselVisitID
-
-        if (result_bbk.TransType == "S" && result_bbk.OperateType == "X" && result_bbk.TransID != null) {
-            //卸船
-            IbVesselVisitID = result_bbk.TransID
-            SNX_VesselVisit IbVesselVisit = new SNX_VesselVisit(IbVesselVisitID)
-            this.VesselVisitList.add(IbVesselVisit)
-        } else if (result_bbk.TransType == "S" && result_bbk.OperateType == "Z" && result_bbk.VesselID != null && result_bbk.TransID != null ) {
-            //装船
-            IbVesselVisitID = result_bbk.VesselID
-            ObVesselVisitID = result_bbk.TransID
-            SNX_VesselVisit IbVesselVisit = new SNX_VesselVisit(IbVesselVisitID)
-            SNX_VesselVisit ObVesselVisit = new SNX_VesselVisit(ObVesselVisitID)
-            this.VesselVisitList.add(IbVesselVisit)
-            this.VesselVisitList.add(ObVesselVisit)
-        } else if(result_bbk.VesselID != null) {
-            //其他装
-            IbVesselVisitID = result_bbk.VesselID
-            SNX_VesselVisit IbVesselVisit = new SNX_VesselVisit(IbVesselVisitID)
-            this.VesselVisitList.add(IbVesselVisit)
-        }
+//        def IbVesselVisitID
+//        def ObVesselVisitID
+//
+//        if (result_bbk.TransType == "S" && result_bbk.OperateType == "X" && result_bbk.TransID != null) {
+//            //卸船
+//            IbVesselVisitID = result_bbk.TransID
+//            SNX_VesselVisit IbVesselVisit = new SNX_VesselVisit(IbVesselVisitID)
+//            this.VesselVisitList.add(IbVesselVisit)
+//        } else if (result_bbk.TransType == "S" && result_bbk.OperateType == "Z" && result_bbk.VesselID != null && result_bbk.TransID != null ) {
+//            //装船
+//            IbVesselVisitID = result_bbk.VesselID
+//            ObVesselVisitID = result_bbk.TransID
+//            SNX_VesselVisit IbVesselVisit = new SNX_VesselVisit(IbVesselVisitID)
+//            SNX_VesselVisit ObVesselVisit = new SNX_VesselVisit(ObVesselVisitID)
+//            this.VesselVisitList.add(IbVesselVisit)
+//            this.VesselVisitList.add(ObVesselVisit)
+//        } else if(result_bbk.VesselID != null) {
+//            //其他装
+//            IbVesselVisitID = result_bbk.VesselID
+//            SNX_VesselVisit IbVesselVisit = new SNX_VesselVisit(IbVesselVisitID)
+//            this.VesselVisitList.add(IbVesselVisit)
+//        }
 
     }
 

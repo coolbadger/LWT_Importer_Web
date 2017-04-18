@@ -51,6 +51,10 @@ class Result_BBK {
     def FeeItem         //费收项目
 
 
+    Result_BBK(){
+
+    }
+
     Result_BBK(GroovyRowResult rowResult) {
         //VARCHAR类型
         this.RecordID = rowResult['JLBH']
@@ -97,4 +101,5 @@ class Result_BBK {
         //20150812 新增字段
         this.FeeItem = rowResult['FSXM']
     }
+
 }

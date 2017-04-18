@@ -49,8 +49,8 @@ class N4Operator {
             Stub stub = (Stub) this.port
 
             // 指定用户名和密码
-            stub._setProperty(Stub.USERNAME_PROPERTY, this.username)
-            stub._setProperty(Stub.PASSWORD_PROPERTY, this.password)
+            stub._setProperty(Stub.USERNAME_PROPERTY, "admin")
+            stub._setProperty(Stub.PASSWORD_PROPERTY, "admin")
 
 
         } catch (Exception e) {
