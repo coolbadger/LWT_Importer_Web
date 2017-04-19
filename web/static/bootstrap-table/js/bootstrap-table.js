@@ -386,10 +386,11 @@
         onClickCell: function (field, value, row, $element) {
             console.log(value )
             console.log(row )
-            if(row.VESSELCN==value){
+            if(row.VESSELCN==value&row.VESSELCN!=undefined){
 
-            }else if(row.SHR_NAME==value){
 
+            }else if(row.SHR_NAME==value&row.SHR_NAME!=undefined){
+                fun3(value);
             }
             return false;
         },

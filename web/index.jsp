@@ -16,10 +16,13 @@
 <layout:override name="script">
     <link type="text/css" rel="stylesheet" href="/static/dateTime/css/admin.css"/>
     <script src="/static/bootstrap-table/js/bootstrap-table.js"></script>
+    <script type="text/javascript" src="/static/js/zDrag.js"></script>
+    <script type="text/javascript" src="/static/js/zDialog.js"></script>
     <link href="/static/bootstrap-table/css/bootstrap-table.css" rel="stylesheet">
 </layout:override>
 
 <layout:override name="content">
+    <input id="tcc" type="hidden" onClick="fun3()" value="弹出层" class="buttonStyle"/>
     <form method="post" action="/test.do">
         <div class="container" style="width: 98%;">
             <div class="maincontent" style="height: 50%">
@@ -221,6 +224,15 @@
             $table.bootstrapTable("removeAll");
             $table.bootstrapTable("load", data);
             //$table.bootstrapTable("resetView");
+        }
+        function fun3(SHR_NAME)
+        {
+            var diag = new Dialog();
+            diag.Width = 900;
+            diag.Height = 1000;
+            diag.Title = "合同窗口";
+            diag.URL = "/charge.jsp?SHR_NAME="+SHR_NAME;
+            diag.show();
         }
     </script>
 
