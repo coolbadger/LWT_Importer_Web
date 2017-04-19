@@ -225,13 +225,13 @@
             $table.bootstrapTable("load", data);
             //$table.bootstrapTable("resetView");
         }
-        function fun3(SHR_NAME)
+        function fun3(CBBH,CZLX,DS,FSXMNAME,HZ,LJBH,LJDS,MTLB,PREPORTNAMEID,SFXT,SHR,SHRNAME,VESSELCN,YSGJ,ZLJDS,ZYLX,ZYQ,ZYSJ)
         {
             var diag = new Dialog();
             diag.Width = 900;
             diag.Height = 1000;
             diag.Title = "合同窗口";
-            diag.URL = "/charge.jsp?SHR_NAME="+SHR_NAME;
+            diag.URL = "/charge.jsp?CBBH="+CBBH+"&CZLX="+CZLX+"&DS="+DS+"&FSXM_NAME="+FSXMNAME+"&HZ="+HZ+"&LJBH="+LJBH+"&LJDS="+LJDS+"&MTLB="+MTLB+"&PREPORTNAMEID="+PREPORTNAMEID+"&SFXT="+SFXT+"&SHR="+SHR+"&SHR_NAME="+SHRNAME+"&VESSELCN="+VESSELCN+"&YSGJ="+YSGJ+"&ZLJDS="+ZLJDS+"&ZYLX="+ZYLX+"&ZYQ="+ZYQ+"&ZYSJ="+ZYSJ;
             diag.show();
         }
     </script>
