@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -112,18 +113,63 @@ public class TariffServlet extends HttpServlet {
 
         }
 
-/*        List<TariffDetails> list=new ArrayList<TariffDetails>();
-        TariffDetails tariffDetails=new TariffDetails();
+        TariffDetails tariffDetails;
+
+        TariffDetails tariffDetailsG;
+        Gson gson = new Gson();
+        /*分类装配数据HashMap*/
+        HashMap HT=new HashMap();
+        /*返回到页面temp*/
+        List temp=new ArrayList();
+        /*储存基础合同list*/
+        List<TariffDetails> list=new ArrayList<TariffDetails>();
+        /*储存公司合同listX*/
+        List<TariffDetails> listG=new ArrayList<TariffDetails>();
+
+        /*初始化tariffDetails*/
+        /*添加基础合同*/
+        tariffDetails=new TariffDetails();
         tariffDetails.setName("加水");
         tariffDetails.setMoney("500");
         list.add(tariffDetails);
-        Gson gson = new Gson();
+
+        tariffDetails=new TariffDetails();
+        tariffDetails.setName("装箱");
+        tariffDetails.setMoney("30000");
+        list.add(tariffDetails);
+
+        tariffDetails=new TariffDetails();
+        tariffDetails.setName("装箱2");
+        tariffDetails.setMoney("10000");
+        list.add(tariffDetails);
+        /*把基础合同信息转换为JSON*/
         String st = gson.toJson(list);
+        HT.put("JCHT",st);
+
+
+        /*<—————————————————基础合同和公司合同分割线———————————————>*/
+
+        /*初始化tariffDetailsX*/
+        /*添加公司合同*/
+        tariffDetailsG=new TariffDetails();
+        tariffDetailsG.setName("卸货");
+        tariffDetailsG.setMoney("50000");
+        listG.add(tariffDetailsG);
+
+        tariffDetailsG=new TariffDetails();
+        tariffDetailsG.setName("充电");
+        tariffDetailsG.setMoney("3000");
+        listG.add(tariffDetailsG);
+        /*把公司合同信息转换为JSON*/
+        String stX= gson.toJson(listG);
+        HT.put("GSHT",stX);
+        temp.add(HT);
+
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        out.write(String.valueOf(st));
-        out.close();*/
+        out.write(String.valueOf(temp));
+        out.close();
 
     }
 }

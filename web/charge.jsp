@@ -66,7 +66,7 @@
                         title: '船舶编号'
                     }],
 
-                data: [{"JLBH":"0114617","CBBH":"475900925"},{"JLBH":"0111914","CBBH":"477038633"},{"JLBH":"9092150","CBBH":"476361417"},{"JLBH":"9092123","CBBH":"477044066"},{"JLBH":"9092100","CBBH":"477042460"},{"JLBH":"7091958","CBBH":"475900690"},{"JLBH":"6140146","CBBH":"475900331"},{"JLBH":"6140105","CBBH":"475878811"},{"JLBH":"6135946","CBBH":"475900686"}]
+                data: []
             });
         }
         initTable();
@@ -76,14 +76,14 @@
             $tables.bootstrapTable({
                 columns: [
                     {
-                        field: 'JLBH',
+                        field: 'name',
                         title: '记录编号'
                     }, {
-                        field: 'CBBH',
+                        field: 'money',
                         title: '船舶编号'
                     }],
 
-                data: [{"JLBH":"0114617","CBBH":"475900925"},{"JLBH":"0111914","CBBH":"477038633"},{"JLBH":"9092150","CBBH":"476361417"},{"JLBH":"9092123","CBBH":"477044066"},{"JLBH":"9092100","CBBH":"477042460"},{"JLBH":"7091958","CBBH":"475900690"},{"JLBH":"6140146","CBBH":"475900331"},{"JLBH":"6140105","CBBH":"475878811"},{"JLBH":"6135946","CBBH":"475900686"}]
+                data:[]
             });
         }
         initTables();
@@ -97,8 +97,17 @@
             type: "post",
             success: function (data) {
                 console.log(data)
-                var jsonData = JSON.parse(data);
-                $table.bootstrapTable("load", jsonData);
+                var a=data.replace("[{JCHT=","");
+                var b=a.replace("}]}]","}]");
+                console.log(b)
+                var strs= new Array(); //定义一数组
+                strs=b.split(", GSHT="); //字符分割
+                console.log(strs[0]+":"+strs[1])
+
+                var jsonData0 = JSON.parse(strs[0]);
+                var jsonData1 = JSON.parse(strs[1]);
+                $table.bootstrapTable("load", jsonData0);
+                $tables.bootstrapTable("load", jsonData1);
             },
             error: function (err) {
                 console.log(err.status);
