@@ -59,10 +59,10 @@
             $table.bootstrapTable({
                 columns: [
                     {
-                        field: 'JLBH',
+                        field: 'name',
                         title: '记录编号'
                     }, {
-                        field: 'CBBH',
+                        field: 'money',
                         title: '船舶编号'
                     }],
 
@@ -92,14 +92,13 @@
         var thisURL=document.URL;
         var getval=thisURL.split('?')[1];
         var showval=getval.split("=")[1];
-            console.log(getval)
         $.ajax({
             url: "/tariff.do?"+getval,
             type: "post",
             success: function (data) {
-/*                console.log(data);
+                console.log(data)
                 var jsonData = JSON.parse(data);
-                $table.bootstrapTable("load", jsonData);*/
+                $table.bootstrapTable("load", jsonData);
             },
             error: function (err) {
                 console.log(err.status);

@@ -1,13 +1,17 @@
 package com.LWT.DataController;
 
 import com.LWT.Details.Event;
+import com.LWT.Details.TariffDetails;
 import com.LWT.Entity.Result_BBK;
 import com.LWT.Entity.SNX_BBK_Unit;
 import com.LWT.Utils.TariffUtils;
+import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +23,7 @@ import java.util.List;
 public class TariffServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String JLBH = req.getParameter("JLBH");
         String CBBH = req.getParameter("CBBH");
@@ -107,6 +111,19 @@ public class TariffServlet extends HttpServlet {
         for(Event event:events){
 
         }
+
+        List<TariffDetails> list=new ArrayList<TariffDetails>();
+        TariffDetails tariffDetails=new TariffDetails();
+        tariffDetails.setName("加水");
+        tariffDetails.setMoney("500");
+        list.add(tariffDetails);
+        Gson gson = new Gson();
+        String st = gson.toJson(list);
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        out.write(String.valueOf(st));
+        out.close();
 
     }
 }
