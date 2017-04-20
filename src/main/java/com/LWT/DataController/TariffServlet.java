@@ -112,7 +112,7 @@ public class TariffServlet extends HttpServlet {
 
         }
 
-        List<TariffDetails> list=new ArrayList<TariffDetails>();
+/*        List<TariffDetails> list=new ArrayList<TariffDetails>();
         TariffDetails tariffDetails=new TariffDetails();
         tariffDetails.setName("加水");
         tariffDetails.setMoney("500");
@@ -123,7 +123,7 @@ public class TariffServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         out.write(String.valueOf(st));
-        out.close();
+        out.close();*/
 
     }
 }
