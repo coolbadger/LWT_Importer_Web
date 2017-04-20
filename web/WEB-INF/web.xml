@@ -5,6 +5,15 @@
          id="WebApp_ID" version="2.5">
 
     <servlet>
+        <servlet-name>TariffServlet</servlet-name>
+        <servlet-class>com.LWT.DataController.TariffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TariffServlet</servlet-name>
+        <url-pattern>/tariff.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>ScreeningServlet</servlet-name>
         <servlet-class>com.LWT.DataController.ScreeningServlet</servlet-class>
     </servlet>

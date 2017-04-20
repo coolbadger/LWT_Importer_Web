@@ -10,7 +10,7 @@ class Global {
 
     static boolean WRITE_BACK = false
 
-    static OracleConn baseOracleConnection = baseConnection()
+//    static OracleConn baseOracleConnection = baseConnection()
     static OracleConn bulkOracleConnection = bulkConnection()
     static OracleConn n4OracleConnection = n4Connection()
 
