@@ -1,7 +1,7 @@
 package com.LWT.DataController;
 
-import com.LWT.Details.Event;
-import com.LWT.Details.TariffDetails;
+import com.LWT.Details.EventDetail;
+import com.LWT.Details.TariffDetail;
 import com.LWT.Entity.Result_BBK;
 import com.LWT.Entity.SNX_BBK_Unit;
 import com.LWT.Utils.TariffUtils;
@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -24,7 +23,7 @@ import java.util.List;
 public class TariffServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
 
         String JLBH = req.getParameter("JLBH");
         String CBBH = req.getParameter("CBBH");
@@ -105,71 +104,36 @@ public class TariffServlet extends HttpServlet {
 
         SNX_BBK_Unit snx_bbk_unit = new SNX_BBK_Unit(result_bbk);
         //生成事件
-        List<Event> events = TariffUtils.createEvent(snx_bbk_unit);
+        List<EventDetail> events = TariffUtils.createEvent(snx_bbk_unit);
 
         System.out.println("生成事件");
 
-        for(Event event:events){
 
+        List<TariffDetail> tariffDetails = new ArrayList<TariffDetail>();
+
+        for(EventDetail event:events){
+            TariffDetail tariffDetail = new TariffDetail();
+            tariffDetail.setTariffName("水费");
+            tariffDetail.setValue("1000");
+            tariffDetails.add(tariffDetail);
         }
 
-        TariffDetails tariffDetails;
-
-        TariffDetails tariffDetailsG;
         Gson gson = new Gson();
-        /*分类装配数据HashMap*/
-        HashMap HT=new HashMap();
-        /*返回到页面temp*/
-        List temp=new ArrayList();
-        /*储存基础合同list*/
-        List<TariffDetails> list=new ArrayList<TariffDetails>();
-        /*储存公司合同listX*/
-        List<TariffDetails> listG=new ArrayList<TariffDetails>();
-
-        /*初始化tariffDetails*/
-        /*添加基础合同*/
-        tariffDetails=new TariffDetails();
-        tariffDetails.setName("加水");
-        tariffDetails.setMoney("500");
-        list.add(tariffDetails);
-
-        tariffDetails=new TariffDetails();
-        tariffDetails.setName("装箱");
-        tariffDetails.setMoney("30000");
-        list.add(tariffDetails);
-
-        tariffDetails=new TariffDetails();
-        tariffDetails.setName("装箱2");
-        tariffDetails.setMoney("10000");
-        list.add(tariffDetails);
-        /*把基础合同信息转换为JSON*/
-        String st = gson.toJson(list);
-        HT.put("JCHT",st);
-
-
-        /*<—————————————————基础合同和公司合同分割线———————————————>*/
-
-        /*初始化tariffDetailsX*/
-        /*添加公司合同*/
-        tariffDetailsG=new TariffDetails();
-        tariffDetailsG.setName("卸货");
-        tariffDetailsG.setMoney("50000");
-        listG.add(tariffDetailsG);
-
-        tariffDetailsG=new TariffDetails();
-        tariffDetailsG.setName("充电");
-        tariffDetailsG.setMoney("3000");
-        listG.add(tariffDetailsG);
-        /*把公司合同信息转换为JSON*/
-        String stX= gson.toJson(listG);
-        HT.put("GSHT",stX);
-        temp.add(HT);
-
+        String s = gson.toJson(tariffDetails);
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.write(String.valueOf(temp));
-        out.close();
+        try {
+            PrintWriter out = resp.getWriter();
+            out.write(String.valueOf(s));
+            out.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
+    public long getFee(String customer,String tariff,long amount){
+
+
+        return amount;
     }
 }

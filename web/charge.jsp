@@ -59,10 +59,10 @@
             $table.bootstrapTable({
                 columns: [
                     {
-                        field: 'name',
+                        field: 'tariffName',
                         title: '记录编号'
                     }, {
-                        field: 'money',
+                        field: 'value',
                         title: '船舶编号'
                     }],
 
@@ -97,17 +97,9 @@
             type: "post",
             success: function (data) {
                 console.log(data)
-                var a=data.replace("[{JCHT=","");
-                var b=a.replace("}]}]","}]");
-                console.log(b)
-                var strs= new Array(); //定义一数组
-                strs=b.split(", GSHT="); //字符分割
-                console.log(strs[0]+":"+strs[1])
+                var jsonData=JSON.parse(data)
+                $table.bootstrapTable("load",jsonData);
 
-                var jsonData0 = JSON.parse(strs[0]);
-                var jsonData1 = JSON.parse(strs[1]);
-                $table.bootstrapTable("load", jsonData0);
-                $tables.bootstrapTable("load", jsonData1);
             },
             error: function (err) {
                 console.log(err.status);

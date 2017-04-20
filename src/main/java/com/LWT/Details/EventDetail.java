@@ -3,7 +3,7 @@ package com.LWT.Details;
 /**
  * Created by ThinkPad on 2017-04-19.
  */
-public class Event {
+public class EventDetail {
 
     private String id;//事件类型
     private String shipper_id;//发货人

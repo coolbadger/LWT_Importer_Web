@@ -43,13 +43,13 @@
                                     </div>
                                     <div class="doc-dd">
                                         &nbsp;&nbsp; 开始时间：<input id="KSSJ" name="" type="text" class="text-box" value=""
-                                               placeholder="开始时间" title="开始时间" style="cursor:pointer;"/>
+                                                                 placeholder="开始时间" title="开始时间" style="cursor:pointer;"/>
                                         结束时间：<input id="JSSJ" name="" type="text" class="text-box" value=""
-                                               placeholder="结束时间" title="结束时间" style="cursor:pointer;"/><br/>
+                                                    placeholder="结束时间" title="结束时间" style="cursor:pointer;"/><br/>
                                         收货人编码：<input id="SHR" name="" type="text" class="text-box" value=""
-                                               placeholder="收货人编码" title="收货人编码" style="cursor:pointer;"/>
+                                                     placeholder="收货人编码" title="收货人编码" style="cursor:pointer;"/>
                                         费收项目：<input id="FSXM_NAME" name="" type="text" class="text-box" value=""
-                                               placeholder="费收项目" title="费收项目" style="cursor:pointer;"/>
+                                                    placeholder="费收项目" title="费收项目" style="cursor:pointer;"/>
                                         <input type="button" value="提交" class="testSubmit" onclick="testSubmit()"
                                                style="width: 90px;height: 40px;">
                                     </div>
@@ -205,8 +205,8 @@
                 url: "/screening.do?FSXM_NAME=" + fsxm + "&KSSJ=" + kssj + "&JSSJ=" + jssj + "&SHR=" + shr,
                 type: "post",
                 success: function (data) {
+                    console.log(data);
 //                    $table.bootstrapTable("removeAll");
-                    console.log(data)
                     var jsonData = JSON.parse(data);
                     $table.bootstrapTable("load", jsonData);
                 },
@@ -218,17 +218,19 @@
 
 
         function screenings(data) {
+            console.log(data)
+
             $table.bootstrapTable("removeAll");
             $table.bootstrapTable("load", data);
             //$table.bootstrapTable("resetView");
         }
-        function fun3(CBBH,CZLX,DS,FSXMNAME,HZ,JLBH,LJDS,MTLB,PREPORTNAMEID,SFXT,SHR,SHRNAME,VESSELCN,YSGJ,ZLJDS,ZYLX,ZYQ,ZYSJ,FHR,MXHZ)
+        function fun3(row)
         {
             var diag = new Dialog();
             diag.Width = 900;
             diag.Height = 1000;
             diag.Title = "合同窗口";
-            diag.URL = "/charge.jsp?CBBH="+CBBH+"&CZLX="+CZLX+"&DS="+DS+"&FSXM_NAME="+FSXMNAME+"&HZ="+HZ+"&JLBH="+JLBH+"&LJDS="+LJDS+"&MTLB="+MTLB+"&PREPORTNAMEID="+PREPORTNAMEID+"&SFXT="+SFXT+"&SHR="+SHR+"&SHR_NAME="+SHRNAME+"&VESSELCN="+VESSELCN+"&YSGJ="+YSGJ+"&ZLJDS="+ZLJDS+"&ZYLX="+ZYLX+"&ZYQ="+ZYQ+"&ZYSJ="+ZYSJ+"&FHR="+FHR+"&MXHZ="+MXHZ;
+            diag.URL = "/charge.jsp?CBBH="+row.CBBH+"&CZLX="+row.CZLX+"&DS="+row.DS+"&FSXM_NAME="+row.FSXM_NAME+"&HZ="+row.HZ+"&JLBH="+row.JLBH+"&LJDS="+row.LJDS+"&MTLB="+row.MTLB+"&PREPORTNAMEID="+row.PREPORTNAMEID+"&SFXT="+row.SFXT+"&SHR="+row.SHR+"&SHR_NAME="+row.SHR_NAME+"&VESSELCN="+row.VESSELCN+"&YSGJ="+row.YSGJ+"&ZLJDS="+row.ZLJDS+"&ZYLX="+row.ZYLX+"&ZYQ="+row.ZYQ+"&ZYSJ="+row.ZYSJ+"&FHR="+row.FHR+"&MXHZ="+row.MXHZ;
             diag.show();
         }
     </script>
