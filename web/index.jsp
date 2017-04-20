@@ -153,8 +153,7 @@
                         title: '总累计吨数'
                     }],
 
-                data: [{"JLBH":"0114617","CBBH":"475900925","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":17889.0,"ZYSJ":"2017-04-10 11:46:17.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"广州","VESSELCN":"富泉海-170409","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"0111914","CBBH":"477038633","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5000.0,"ZYSJ":"2017-04-10 11:19:14.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"正荣3-1711","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"9092150","CBBH":"476361417","ZYQ":"4617","HZ":"0542","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":6066.0,"ZYSJ":"2017-04-09 09:21:50.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"福州","VESSELCN":"九华山2-170407","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"9092123","CBBH":"477044066","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":9000.0,"ZYSJ":"2017-04-09 09:21:23.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"永麒-170408","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"9092100","CBBH":"477042460","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5056.0,"ZYSJ":"2017-04-09 09:21:00.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"航安轮-170409","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"7091958","CBBH":"475900690","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5055.0,"ZYSJ":"2017-04-07 09:19:58.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"航顺轮-170405","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"6140146","CBBH":"475900331","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5002.0,"ZYSJ":"2017-04-06 14:01:46.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"兴龙城-170405","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"6140105","CBBH":"475878811","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":8500.0,"ZYSJ":"2017-04-06 14:01:05.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"弘泰888-170404","SHR_NAME":"温州中港混凝土有限公司"},{"JLBH":"6135946","CBBH":"475900686","ZYQ":"4617","HZ":"0800","SHR":"78069616","ZYLX":"X","YSGJ":"S","SFXT":"N","CZLX":"I","DS":5100.0,"ZYSJ":"2017-04-06 13:59:46.0","MTLB":"Y","LJDS":0.0,"ZLJDS":0.0,"FSXM_NAME":"硬码头","PREPORTNAMEID":"厦门","VESSELCN":"兴中盛-170405","SHR_NAME":"温州中港混凝土有限公司"}]
-
+                data: []
 
             });
         }
@@ -207,6 +206,7 @@
                 type: "post",
                 success: function (data) {
 //                    $table.bootstrapTable("removeAll");
+                    console.log(data)
                     var jsonData = JSON.parse(data);
                     $table.bootstrapTable("load", jsonData);
                 },
@@ -222,13 +222,13 @@
             $table.bootstrapTable("load", data);
             //$table.bootstrapTable("resetView");
         }
-        function fun3(CBBH,CZLX,DS,FSXMNAME,HZ,JLBH,LJDS,MTLB,PREPORTNAMEID,SFXT,SHR,SHRNAME,VESSELCN,YSGJ,ZLJDS,ZYLX,ZYQ,ZYSJ)
+        function fun3(CBBH,CZLX,DS,FSXMNAME,HZ,JLBH,LJDS,MTLB,PREPORTNAMEID,SFXT,SHR,SHRNAME,VESSELCN,YSGJ,ZLJDS,ZYLX,ZYQ,ZYSJ,FHR,MXHZ)
         {
             var diag = new Dialog();
             diag.Width = 900;
             diag.Height = 1000;
             diag.Title = "合同窗口";
-            diag.URL = "/charge.jsp?CBBH="+CBBH+"&CZLX="+CZLX+"&DS="+DS+"&FSXM_NAME="+FSXMNAME+"&HZ="+HZ+"&JLBH="+JLBH+"&LJDS="+LJDS+"&MTLB="+MTLB+"&PREPORTNAMEID="+PREPORTNAMEID+"&SFXT="+SFXT+"&SHR="+SHR+"&SHR_NAME="+SHRNAME+"&VESSELCN="+VESSELCN+"&YSGJ="+YSGJ+"&ZLJDS="+ZLJDS+"&ZYLX="+ZYLX+"&ZYQ="+ZYQ+"&ZYSJ="+ZYSJ;
+            diag.URL = "/charge.jsp?CBBH="+CBBH+"&CZLX="+CZLX+"&DS="+DS+"&FSXM_NAME="+FSXMNAME+"&HZ="+HZ+"&JLBH="+JLBH+"&LJDS="+LJDS+"&MTLB="+MTLB+"&PREPORTNAMEID="+PREPORTNAMEID+"&SFXT="+SFXT+"&SHR="+SHR+"&SHR_NAME="+SHRNAME+"&VESSELCN="+VESSELCN+"&YSGJ="+YSGJ+"&ZLJDS="+ZLJDS+"&ZYLX="+ZYLX+"&ZYQ="+ZYQ+"&ZYSJ="+ZYSJ+"&FHR="+FHR+"&MXHZ="+MXHZ;
             diag.show();
         }
     </script>

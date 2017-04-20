@@ -387,7 +387,8 @@
             if(row.VESSELCN==value&row.VESSELCN!=undefined){
 
             }else if(row.SHR_NAME==value&row.SHR_NAME!=undefined){
-                fun3(row.CBBH,row.CZLX,row.DS,row.FSXM_NAME,row.HZ,row.JLBH,row.LJDS,row.MTLB,row.PREPORTNAMEID,row.SFXT,row.SHR,row.SHR_NAME,row.VESSELCN,row.YSGJ,row.ZLJDS,row.ZYLX,row.ZYQ,row.ZYSJ);
+                console.log(row)
+                fun3(row.CBBH,row.CZLX,row.DS,row.FSXM_NAME,row.HZ,row.JLBH,row.LJDS,row.MTLB,row.PREPORTNAMEID,row.SFXT,row.SHR,row.SHR_NAME,row.VESSELCN,row.YSGJ,row.ZLJDS,row.ZYLX,row.ZYQ,row.ZYSJ,row.FHR,row.MXHZ);
             }
             return false;
         },
