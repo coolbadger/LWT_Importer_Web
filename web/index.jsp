@@ -57,12 +57,9 @@
                             </ul>
                         </div>
                         <div id="toolbar" class="btn-group">
-                            <button id="btn_edit" type="submit" class="btn btn-info"
-                                    onclick="return confirm('确定执行导入吗?')">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>导入
-                            </button>
+
                             <button id="btn_test" type="button" class="btn btn-info" onclick="getIdSelections()">
-                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>取值
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>导入
                             </button>
                         </div>
                         <table id="table" data-toggle="table" data-url="" data-method="post"
@@ -162,11 +159,16 @@
             return $.map($table.bootstrapTable('getSelections'), function (row) {
                 $.ajax({
                     //contentType: "application/json;charset=utf-8",
-                    url: "/test.do?JLBH=" + row.JLBH + "&CBBH=" + row.CBBH + "&HZ=" + row.HZ + "&VESSELCN=" + row.VESSELCN + "&ZYQ=" + row.ZYQ + "&YSGJ=" + row.YSGJ + "&ZYLX=" + row.ZYLX + "&SHR=" + row.SHR + "&FHR=" + row.FHR + "&SHR_NAME=" + row.SHR_NAME + "&SFXT=" + row.SFXT + "&CZLX=" + row.CZLX + "&MXHZ=" + row.MXHZ + "&MTLB=" + row.MTLB + "&FSXM_NAME=" + row.FSXM_NAME + "&PREPORTNAMEID=" + row.PREPORTNAMEID + "&ZYSJ=" + row.ZYSJ + "&DS=" + row.DS + "&LJDS=" + row.LJDS + "&ZLJDS=" + row.ZLJDS,
+                    url: "/add.do?JLBH=" + row.JLBH + "&CBBH=" + row.CBBH + "&HZ=" + row.HZ + "&VESSELCN=" + row.VESSELCN + "&ZYQ=" + row.ZYQ + "&YSGJ=" + row.YSGJ + "&ZYLX=" + row.ZYLX + "&SHR=" + row.SHR + "&FHR=" + row.FHR + "&SHR_NAME=" + row.SHR_NAME + "&SFXT=" + row.SFXT + "&CZLX=" + row.CZLX + "&MXHZ=" + row.MXHZ + "&MTLB=" + row.MTLB + "&FSXM_NAME=" + row.FSXM_NAME + "&PREPORTNAMEID=" + row.PREPORTNAMEID + "&ZYSJ=" + row.ZYSJ + "&DS=" + row.DS + "&LJDS=" + row.LJDS + "&ZLJDS=" + row.ZLJDS,
                     type: "post",
                     dataType: "json",
                     success: function (data) {
-                        alert(data);
+                        if(data==0){
+                            alert("添加成功！");
+                        }else{
+                            alert("添加失败")
+                        }
+
                     },
                     error: function (err) {
                         console.log(err.status);

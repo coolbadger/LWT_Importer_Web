@@ -30,8 +30,8 @@ import java.util.Date;
 /**
  * Created by Kirito on 2017/3/31.
  */
-@WebServlet("/TestServlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/addServlet")
+public class addServlet extends HttpServlet {
 
 
     @Override
@@ -127,7 +127,11 @@ public class TestServlet extends HttpServlet {
         n4Operator.initRequest();
         Object a = n4Operator.sendRequestWithXml(xml);
         System.out.println(a.toString());
-
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        out.write(String.valueOf(a));
+        out.close();
     }
 
     @Override

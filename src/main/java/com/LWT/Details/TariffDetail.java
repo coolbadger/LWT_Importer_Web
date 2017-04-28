@@ -5,8 +5,17 @@ package com.LWT.Details;
  */
 public class TariffDetail {
 
-    private String tariffName;
-    private String value;
+    private String tariffName;//费目名
+    private String value;//钱数
+    private String tariffType;//合同种类
+
+    public String getTariffType() {
+        return tariffType;
+    }
+
+    public void setTariffType(String tariffType) {
+        this.tariffType = tariffType;
+    }
 
     public String getTariffName() {
         return tariffName;

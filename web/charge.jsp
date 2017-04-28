@@ -19,7 +19,7 @@
 
         <div class="container" style="width: 98%;">
             <div class="maincontent" style="height: 80%">
-                    <div class="panel-body" style="width: 45%;float: left">
+                    <%--<div class="panel-body" style="width: 85%;float: left">--%>
                         <strong>基本合同</strong>
                         <table id="table" data-toggle="table" data-url="" data-method="post"
                                data-query-params="queryParams"
@@ -33,7 +33,8 @@
                                data-page-list="[5,10, 25, 50, 100, ALL]"
                                datatype="json">
                         </table>
-                    </div>
+                <%--    </div>--%>
+<%--
                 <div class="panel-body" style="width: 45%;float: right">
                     <strong>增补合同</strong>
                 <table id="tables" data-toggle="table" data-url="" data-method="post"
@@ -49,6 +50,7 @@
                        datatype="json">
                 </table>
                 </div>
+--%>
 
             </div>
         </div>
@@ -60,10 +62,10 @@
                 columns: [
                     {
                         field: 'tariffName',
-                        title: '记录编号'
+                        title: '费目'
                     }, {
                         field: 'value',
-                        title: '船舶编号'
+                        title: '金额'
                     }],
 
                 data: []
@@ -71,6 +73,7 @@
         }
         initTable();
 
+/*
         var $tables = $('#tables');
         function initTables() {
             $tables.bootstrapTable({
@@ -87,6 +90,7 @@
             });
         }
         initTables();
+*/
 
 
         var thisURL=document.URL;

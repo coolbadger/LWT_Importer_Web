@@ -4,6 +4,7 @@ import com.LWT.Details.EventDetail;
 import com.LWT.Details.TariffDetail;
 import com.LWT.Entity.Result_BBK;
 import com.LWT.Entity.SNX_BBK_Unit;
+import com.LWT.Utils.MatchFeeUtils;
 import com.LWT.Utils.TariffUtils;
 import com.google.gson.Gson;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -105,17 +107,22 @@ public class TariffServlet extends HttpServlet {
         SNX_BBK_Unit snx_bbk_unit = new SNX_BBK_Unit(result_bbk);
         //生成事件
         List<EventDetail> events = TariffUtils.createEvent(snx_bbk_unit);
-
-        System.out.println("生成事件");
-
-
         List<TariffDetail> tariffDetails = new ArrayList<TariffDetail>();
 
         for(EventDetail event:events){
-            TariffDetail tariffDetail = new TariffDetail();
-            tariffDetail.setTariffName("水费");
-            tariffDetail.setValue("1000");
+            TariffUtils tariffUtils = new TariffUtils();
+            String feeCode = tariffUtils.queryTree(event);
+            //查询feeCode所代表的费目与客户合同中的费目是否匹配，不匹配则不收费
+            MatchFeeUtils matchFeeUtils = new MatchFeeUtils();
+            //TODO 客户名称暂定杨思明
+            TariffDetail tariffDetail = matchFeeUtils.matchFee(feeCode,"杨思明");
+
+            BigDecimal feeAmount = new BigDecimal(tariffDetail.getValue());
+            BigDecimal weight = new BigDecimal(result_bbk.getTonsWeight().toString());
+
+            tariffDetail.setValue(feeAmount.multiply(weight).toString());
             tariffDetails.add(tariffDetail);
+
         }
 
         Gson gson = new Gson();

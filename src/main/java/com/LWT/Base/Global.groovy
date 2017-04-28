@@ -59,7 +59,8 @@ class Global {
         System.out.println("n4数据库初始化开始")
         GlobalLogger.myLogger.info("Init n4Connection:")
         //　N4系统数据库
-        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.110"
+//        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.110"
+        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.3.10" : "192.168.37.110"//鼎和汇本地N4
         def DB = "jdbc:oracle:thin:@" + IP + ":1521:n4"
         def USER = "n4user"
         def PASSWORD = "n4user"
@@ -75,7 +76,8 @@ class Global {
     private static N4Operator getN4Operator() {
         GlobalLogger.myLogger.info("Init N4PortConnection:")
         //N4系统连接
-        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.112"
+//        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.112"
+        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.3.10" : "192.168.37.112"//鼎合汇本地N4
         String ArgoServiceURL = "http://" + IP + ":9080/apex/services/argoservice"
         String OperatorId = "WZCT"
         String ComplexId = "WZT"

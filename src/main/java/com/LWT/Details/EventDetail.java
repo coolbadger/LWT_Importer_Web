@@ -14,6 +14,17 @@ public class EventDetail {
     private String user_id;//操作员
     private String is_billable;//是否收费
 
+
+    private String line;//运输类型
+
+    public String getLine() {
+        return line;
+    }
+
+    public void setLine(String line) {
+        this.line = line;
+    }
+
     public String getId() {
         return id;
     }
