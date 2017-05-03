@@ -58,6 +58,7 @@
     <script>
         var $table = $('#table');
         function initTable() {
+
             $table.bootstrapTable({
                 columns: [
                     {
@@ -66,7 +67,11 @@
                     }, {
                         field: 'value',
                         title: '金额'
-                    }],
+                    },{
+                        field: 'tariffType',
+                        title: '合同种类'
+                    }
+            ],
 
                 data: []
             });

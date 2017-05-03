@@ -129,7 +129,8 @@ public class TariffUtils {
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             System.out.println("开始初始化billing数据库");
-            String url = "jdbc:oracle:" + "thin:@192.168.3.10:1521:nb";
+            String url = "jdbc:oracle:" + "thin:@192.168.37.111:1521:nb";
+//            String url = "jdbc:oracle:" + "thin:@192.168.3.10:1521:nb";
             String user = "nbuser";
             String password = "nbuser";
             con = DriverManager.getConnection(url, user, password);
@@ -189,77 +190,84 @@ public class TariffUtils {
             }
         }
 
-        TreeDetail treeDetail = map.get(tariff_rules_id);//得到第一个条件
-
         String feeCode=null;//费目代号
-        Map<String,String> tableMap = new HashMap<String, String>();
-        tableMap.put("bexuFreightKind",eventDetail.getLine());
-        tableMap.put("bexuFlexString09",eventDetail.getNote());
 
-        //根据各种条件查询当前事件满足的费目代号
-        while (feeCode==null){
-            if ("MATCHES".equals(treeDetail.getVERB())){
-                //TODO 待确定此处取value值还是uiValue值
-                String value = treeDetail.getVALUE();
-                value = value.replace("*","");
-                value = value.replace("%","");
-                //TODO 需做一个map转化 map.get(treeDetail.getMETAFIELD());
-                boolean s = tableMap.get(treeDetail.getMETAFIELD()).contains(value);
-                if (s){
-                    //满足当前条件时，无论有没有兄弟条件，都不会判断兄弟条件
-                    //                如果有子条件，应再去判断子条件
-                    //                如果没有子条件，则判断结束
-                    if (treeDetail.getSUB_EMAPP_GKEY()!=null){
-                        String sonGKEY = treeDetail.getSUB_EMAPP_GKEY();
-                        treeDetail.setGKEY(map.get(sonGKEY).getGKEY());
-                        treeDetail.setMETAFIELD(map.get(sonGKEY).getMETAFIELD());
-                        treeDetail.setNEGATED(map.get(sonGKEY).getNEGATED());
-                        treeDetail.setSUB_EMAPP_GKEY(map.get(sonGKEY).getSUB_EMAPP_GKEY());
-                        treeDetail.setNEXT_EMAPP_GKEY(map.get(sonGKEY).getNEXT_EMAPP_GKEY());
-                        treeDetail.setVERB(map.get(sonGKEY).getVERB());
-                        treeDetail.setUIVALUE(map.get(sonGKEY).getUIVALUE());
-                        treeDetail.setVALUE(map.get(sonGKEY).getVALUE());
+        if (tariff_rules_id!=null&&!"".equals(tariff_rules_id)){
+            TreeDetail treeDetail = map.get(tariff_rules_id);//得到第一个条件
+
+            Map<String,String> tableMap = new HashMap<String, String>();
+            tableMap.put("bexuFreightKind",eventDetail.getLine());
+            tableMap.put("bexuFlexString09",eventDetail.getNote());
+
+            //根据各种条件查询当前事件满足的费目代号
+            while (feeCode==null){
+                if ("MATCHES".equals(treeDetail.getVERB())){
+                    //TODO 待确定此处取value值还是uiValue值
+                    String value = treeDetail.getVALUE();
+                    value = value.replace("*","");
+                    value = value.replace("%","");
+                    //TODO 需做一个map转化 map.get(treeDetail.getMETAFIELD());
+                    boolean s = tableMap.get(treeDetail.getMETAFIELD()).contains(value);
+                    if (s){
+                        //满足当前条件时，无论有没有兄弟条件，都不会判断兄弟条件
+                        //                如果有子条件，应再去判断子条件
+                        //                如果没有子条件，则判断结束
+                        if (treeDetail.getSUB_EMAPP_GKEY()!=null){
+                            String sonGKEY = treeDetail.getSUB_EMAPP_GKEY();
+                            treeDetail.setGKEY(map.get(sonGKEY).getGKEY());
+                            treeDetail.setMETAFIELD(map.get(sonGKEY).getMETAFIELD());
+                            treeDetail.setNEGATED(map.get(sonGKEY).getNEGATED());
+                            treeDetail.setSUB_EMAPP_GKEY(map.get(sonGKEY).getSUB_EMAPP_GKEY());
+                            treeDetail.setNEXT_EMAPP_GKEY(map.get(sonGKEY).getNEXT_EMAPP_GKEY());
+                            treeDetail.setVERB(map.get(sonGKEY).getVERB());
+                            treeDetail.setUIVALUE(map.get(sonGKEY).getUIVALUE());
+                            treeDetail.setVALUE(map.get(sonGKEY).getVALUE());
+                        }else {
+                            feeCode = treeDetail.getGKEY();
+                            System.out.println("成功+++++++++"+feeCode);
+                        }
                     }else {
-                        feeCode = treeDetail.getGKEY();
-                        System.out.println("成功+++++++++"+feeCode);
+                        //不满足当前条件时，无论有没有子条件，都不会判断子条件
+                        //                  如果有兄弟条件，应再去判断兄弟条件
+                        //                  如果没有兄弟条件，则判断结束
+                        if (treeDetail.getNEXT_EMAPP_GKEY()!=null){
+                            String broGKEY = treeDetail.getNEXT_EMAPP_GKEY();
+                            treeDetail = map.get(broGKEY);
+                        }else {
+                            break;
+                        }
                     }
-                }else {
-                    //不满足当前条件时，无论有没有子条件，都不会判断子条件
-                    //                  如果有兄弟条件，应再去判断兄弟条件
-                    //                  如果没有兄弟条件，则判断结束
-                    if (treeDetail.getNEXT_EMAPP_GKEY()!=null){
-                        String broGKEY = treeDetail.getNEXT_EMAPP_GKEY();
-                        treeDetail = map.get(broGKEY);
-                    }else {
-                        break;
+                }else if ("EQ".equals(treeDetail.getVERB())){
+                    String value = treeDetail.getVALUE();
+                    if (value.equals(tableMap.get(treeDetail.getMETAFIELD()))){
+                        if (treeDetail.getSUB_EMAPP_GKEY()!=null){
+                            String sonGKEY = treeDetail.getSUB_EMAPP_GKEY();
+                            treeDetail.setGKEY(map.get(sonGKEY).getGKEY());
+                            treeDetail.setMETAFIELD(map.get(sonGKEY).getMETAFIELD());
+                            treeDetail.setNEGATED(map.get(sonGKEY).getNEGATED());
+                            treeDetail.setSUB_EMAPP_GKEY(map.get(sonGKEY).getSUB_EMAPP_GKEY());
+                            treeDetail.setNEXT_EMAPP_GKEY(map.get(sonGKEY).getNEXT_EMAPP_GKEY());
+                            treeDetail.setVERB(map.get(sonGKEY).getVERB());
+                            treeDetail.setUIVALUE(map.get(sonGKEY).getUIVALUE());
+                            treeDetail.setVALUE(map.get(sonGKEY).getVALUE());
+                        }else {
+                            feeCode = treeDetail.getGKEY();
+                        }
+                    }else{
+                        if (treeDetail.getNEXT_EMAPP_GKEY()!=null){
+                            String broGKEY = treeDetail.getNEXT_EMAPP_GKEY();
+                            treeDetail = map.get(broGKEY);
+                        }else {
+                            break;
+                        }
                     }
                 }
-            }else if ("EQ".equals(treeDetail.getVERB())){
-                String value = treeDetail.getVALUE();
-                if (value.equals(tableMap.get(treeDetail.getMETAFIELD()))){
-                    if (treeDetail.getSUB_EMAPP_GKEY()!=null){
-                        String sonGKEY = treeDetail.getSUB_EMAPP_GKEY();
-                        treeDetail.setGKEY(map.get(sonGKEY).getGKEY());
-                        treeDetail.setMETAFIELD(map.get(sonGKEY).getMETAFIELD());
-                        treeDetail.setNEGATED(map.get(sonGKEY).getNEGATED());
-                        treeDetail.setSUB_EMAPP_GKEY(map.get(sonGKEY).getSUB_EMAPP_GKEY());
-                        treeDetail.setNEXT_EMAPP_GKEY(map.get(sonGKEY).getNEXT_EMAPP_GKEY());
-                        treeDetail.setVERB(map.get(sonGKEY).getVERB());
-                        treeDetail.setUIVALUE(map.get(sonGKEY).getUIVALUE());
-                        treeDetail.setVALUE(map.get(sonGKEY).getVALUE());
-                    }else {
-                        feeCode = treeDetail.getGKEY();
-                    }
-                }else{
-                    if (treeDetail.getNEXT_EMAPP_GKEY()!=null){
-                        String broGKEY = treeDetail.getNEXT_EMAPP_GKEY();
-                        treeDetail = map.get(broGKEY);
-                    }else {
-                        break;
-                    }
-                }
-            }//TODO 还有多种判断条件
+//                else if(){
+//
+//                }//TODO 还有多种判断条件
+            }
         }
+
         if (feeCode==null){
             return "";
         }else {
@@ -269,10 +277,27 @@ public class TariffUtils {
     }
 
     public static void main(String[] args){
-        String a = "卸船";
-        String b = "卸船：5100";
-        int c = b.indexOf(a);
-        System.out.println(c);
+
+        List<String> list = new ArrayList<String>();
+        list.add("AAA");
+        list.add("BBB");
+        list.add("AAA");
+        list.add("CCC");
+        list.add("DDD");
+        list.add("BBB");
+        list.add("BBB");
+        list.add("EEE");
+
+        for (int i = 0;i<list.size()-1;i++){
+            for (int j = list.size()-1;j>i;j--){
+                if (list.get(j).equals(list.get(i))){
+                    list.remove(j);
+                }
+            }
+        }
+
+        System.out.println(list);
+
     }
 
 }

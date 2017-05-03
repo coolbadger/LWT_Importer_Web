@@ -112,17 +112,18 @@ public class TariffServlet extends HttpServlet {
         for(EventDetail event:events){
             TariffUtils tariffUtils = new TariffUtils();
             String feeCode = tariffUtils.queryTree(event);
-            //查询feeCode所代表的费目与客户合同中的费目是否匹配，不匹配则不收费
-            MatchFeeUtils matchFeeUtils = new MatchFeeUtils();
-            //TODO 客户名称暂定杨思明
-            TariffDetail tariffDetail = matchFeeUtils.matchFee(feeCode,"杨思明");
+            if (feeCode!=null&&!"".equals(feeCode)){
+                //查询feeCode所代表的费目与客户合同中的费目是否匹配，不匹配则不收费
+                MatchFeeUtils matchFeeUtils = new MatchFeeUtils();
+                //TODO 客户名称暂定杨思明
+                TariffDetail tariffDetail = matchFeeUtils.matchFee(feeCode,SHR_NAME);
 
-            BigDecimal feeAmount = new BigDecimal(tariffDetail.getValue());
-            BigDecimal weight = new BigDecimal(result_bbk.getTonsWeight().toString());
+                BigDecimal feeAmount = new BigDecimal(tariffDetail.getValue());
+                BigDecimal weight = new BigDecimal(result_bbk.getTonsWeight().toString());
 
-            tariffDetail.setValue(feeAmount.multiply(weight).toString());
-            tariffDetails.add(tariffDetail);
-
+                tariffDetail.setValue(feeAmount.multiply(weight).toString());
+                tariffDetails.add(tariffDetail);
+            }
         }
 
         Gson gson = new Gson();

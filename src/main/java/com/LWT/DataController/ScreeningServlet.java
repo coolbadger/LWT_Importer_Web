@@ -126,26 +126,26 @@ public class ScreeningServlet extends HttpServlet {
             while (rs.next()) {
                 Conversion vw = new Conversion();
 
-                vw.setJLBH(rs.getString("JLBH"));//记录编号
-                vw.setCBBH(rs.getString("CBBH"));//船舶编号
-                vw.setZYQ(rs.getString("ZYQ"));//作业区
-                vw.setHZ(rs.getString("HZ"));//货种
-                vw.setSHR(rs.getString("SHR"));//收货人编码
-                vw.setZYLX(rs.getString("ZYLX"));//作业类型
-                vw.setYSGJ(rs.getString("YSGJ"));//运输工具
+                vw.setJLBH(rs.getString("JLBH") == null ? "" : rs.getString("JLBH"));//记录编号
+                vw.setCBBH(rs.getString("CBBH") == null ? "" : rs.getString("CBBH"));//船舶编号
+                vw.setZYQ(rs.getString("ZYQ") == null ? "" : rs.getString("ZYQ"));//作业区
+                vw.setHZ(rs.getString("HZ") == null ? "" : rs.getString("HZ"));//货种
+                vw.setSHR(rs.getString("SHR") == null ? "" : rs.getString("SHR"));//收货人编码
+                vw.setZYLX(rs.getString("ZYLX") == null ? "" : rs.getString("ZYLX"));//作业类型
+                vw.setYSGJ(rs.getString("YSGJ") == null ? "" : rs.getString("YSGJ"));//运输工具
                 vw.setFHR(rs.getString("FHR") == null ? "" : rs.getString("FHR"));//发货人编码
-                vw.setSFXT(rs.getString("SFXT"));//是否现提
-                vw.setCZLX(rs.getString("CZLX"));//操作类型
+                vw.setSFXT(rs.getString("SFXT") == null ? "" : rs.getString("SFXT"));//是否现提
+                vw.setCZLX(rs.getString("CZLX") == null ? "" : rs.getString("CZLX"));//操作类型
                 vw.setDS(rs.getDouble("DS"));//吨数
-                vw.setZYSJ(rs.getString("ZYSJ"));//作业时间
+                vw.setZYSJ(rs.getString("ZYSJ") == null ? "" : rs.getString("ZYSJ"));//作业时间
                 vw.setMXHZ(rs.getString("MXHZ") == null ? "" : rs.getString("MXHZ"));//明细货种
-                vw.setMTLB(rs.getString("MTLB"));//码头类别
+                vw.setMTLB(rs.getString("MTLB") == null ? "" : rs.getString("MTLB"));//码头类别
                 vw.setLJDS(rs.getDouble("LJDS"));//累计吨数
                 vw.setZLJDS(rs.getDouble("ZLJDS"));//总累计吨数
-                vw.setFSXM_NAME(rs.getString("FSXM_NAME"));//费收项目
-                vw.setPREPORTNAMEID(rs.getString("PREPORTNAMEID"));//装货港
-                vw.setVESSELCN(rs.getString("VESSELCN"));//船名航次
-                vw.setSHR_NAME(rs.getString("SHR_NAME"));//收货人名称
+                vw.setFSXM_NAME(rs.getString("FSXM_NAME") == null ? "" : rs.getString("FSXM_NAME"));//费收项目
+                vw.setPREPORTNAMEID(rs.getString("PREPORTNAMEID") == null ? "" : rs.getString("PREPORTNAMEID"));//装货港
+                vw.setVESSELCN(rs.getString("VESSELCN") == null ? "" : rs.getString("VESSELCN"));//船名航次
+                vw.setSHR_NAME(rs.getString("SHR_NAME") == null ? "" : rs.getString("SHR_NAME"));//收货人名称
                 list.add(vw);
             }
 
