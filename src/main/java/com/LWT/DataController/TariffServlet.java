@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +43,11 @@ public class TariffServlet extends HttpServlet {
         String MXHZ = req.getParameter("MXHZ");
         String MTLB = req.getParameter("MTLB");
         String FSXM_NAME = req.getParameter("FSXM_NAME");
+//        try {
+//            FSXM_NAME = new String(req.getParameter("FSXM_NAME").getBytes("iso-8859-1"),"utf-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
         String PREPORTNAMEID = req.getParameter("PREPORTNAMEID");
         String ZYSJ = req.getParameter("ZYSJ").substring(0,req.getParameter("ZYSJ").length()-2);
         String DS = req.getParameter("DS");
@@ -60,6 +66,7 @@ public class TariffServlet extends HttpServlet {
         String FSXM="";
 
         System.out.println(JLBH);
+        System.out.println(FSXM_NAME);
 
         Result_BBK result_bbk = new Result_BBK();
         result_bbk.setRecordID(JLBH);
@@ -102,7 +109,8 @@ public class TariffServlet extends HttpServlet {
         result_bbk.setProcessed(SFHQ);
         result_bbk.setProcessTime(HQSJ);
 
-        result_bbk.setFeeItem(FSXM);
+        result_bbk.setFeeItem(FSXM_NAME);
+
 
         SNX_BBK_Unit snx_bbk_unit = new SNX_BBK_Unit(result_bbk);
         //生成事件

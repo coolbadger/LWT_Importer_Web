@@ -120,6 +120,9 @@ public class Conversion {
     }
 
     public void setZYSJ(String ZYSJ) {
+        ZYSJ = ZYSJ.replace("-","");
+        ZYSJ = ZYSJ.replace(":","");
+        ZYSJ = ZYSJ.substring(0,8);
         this.ZYSJ = ZYSJ;
     }
 

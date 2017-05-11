@@ -15,9 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -108,6 +106,7 @@ public class ScreeningServlet extends HttpServlet {
         Connection con = null;
         PreparedStatement pre = null;
         ResultSet rs = null;
+        String date = "";
 
         List<Conversion> list = new ArrayList<Conversion>();
         try {

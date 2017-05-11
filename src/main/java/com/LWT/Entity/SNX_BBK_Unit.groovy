@@ -43,6 +43,7 @@ class SNX_BBK_Unit {
 
     boolean IsYard      // 是否是堆场上的UNIT(即从集团导入的数据)
     boolean IsDirTake   //是否直提
+    def feeItem          //费收项目
 
     List<SNX_VesselVisit> VesselVisitList       //对应的VesselVisit列表
     List<SNX_Vessel> snxVesselList              //附加船舶信息和船期信息
@@ -79,6 +80,7 @@ class SNX_BBK_Unit {
         this.DataSource = result_bbk.DataSource
         this.DirTakeType = result_bbk.DirTakeType
         this.IBVisit = "GEN_VESSEL"
+        this.feeItem = result_bbk.getFeeItem()
 
         //根据装卸船类型，区分相关内容
         if (result_bbk.WorkType == "X") {

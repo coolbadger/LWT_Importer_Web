@@ -16,6 +16,15 @@ public class EventDetail {
 
 
     private String line;//运输类型
+    private String feeItem;//费收项目
+
+    public String getFeeItem() {
+        return feeItem;
+    }
+
+    public void setFeeItem(String feeItem) {
+        this.feeItem = feeItem;
+    }
 
     public String getLine() {
         return line;

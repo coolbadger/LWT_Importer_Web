@@ -31,6 +31,7 @@ public class TariffUtils {
             event.setUser_id("snx:admin");
             event.setIs_billable("Y");
             event.setLine(snx_bbk_unit.getLine().toString());
+            event.setFeeItem(snx_bbk_unit.getFeeItem().toString());
             events.add(event);
         }else{
             if (snx_bbk_unit.isIsYard()){
@@ -44,6 +45,7 @@ public class TariffUtils {
                 event.setUser_id("snx:admin");
                 event.setIs_billable("Y");
                 event.setLine(snx_bbk_unit.getLine().toString());
+                event.setFeeItem(snx_bbk_unit.getFeeItem().toString());
                 events.add(event);
             }else {
                 if(snx_bbk_unit.isIsDirTake()){
@@ -57,6 +59,7 @@ public class TariffUtils {
                     event.setUser_id("snx:admin");
                     event.setIs_billable("Y");
                     event.setLine(snx_bbk_unit.getLine().toString());
+                    event.setFeeItem(snx_bbk_unit.getFeeItem().toString());
                     events.add(event);
                 }else {
                     EventDetail event = new EventDetail();
@@ -69,6 +72,7 @@ public class TariffUtils {
                     event.setUser_id("snx:admin");
                     event.setIs_billable("Y");
                     event.setLine(snx_bbk_unit.getLine().toString());
+                    event.setFeeItem(snx_bbk_unit.getFeeItem().toString());
                     events.add(event);
                     EventDetail event1 = new EventDetail();
                     event1.setId("BBK_UNIT_DISCHARGE");
@@ -80,6 +84,7 @@ public class TariffUtils {
                     event1.setUser_id("snx:admin");
                     event1.setIs_billable("Y");
                     event.setLine(snx_bbk_unit.getLine().toString());
+                    event.setFeeItem(snx_bbk_unit.getFeeItem().toString());
                     events.add(event1);
                 }
             }
@@ -197,17 +202,19 @@ public class TariffUtils {
 
             Map<String,String> tableMap = new HashMap<String, String>();
             tableMap.put("bexuFreightKind",eventDetail.getLine());
-            tableMap.put("bexuFlexString09",eventDetail.getNote());
+            tableMap.put("bexuFlexString09",eventDetail.getFeeItem());
 
             //根据各种条件查询当前事件满足的费目代号
             while (feeCode==null){
                 if ("MATCHES".equals(treeDetail.getVERB())){
                     //TODO 待确定此处取value值还是uiValue值
                     String value = treeDetail.getVALUE();
+//                    System.out.println(value);
                     value = value.replace("*","");
                     value = value.replace("%","");
                     //TODO 需做一个map转化 map.get(treeDetail.getMETAFIELD());
                     boolean s = tableMap.get(treeDetail.getMETAFIELD()).contains(value);
+//                    System.out.println(tableMap.get(treeDetail.getMETAFIELD()));
                     if (s){
                         //满足当前条件时，无论有没有兄弟条件，都不会判断兄弟条件
                         //                如果有子条件，应再去判断子条件
@@ -234,6 +241,7 @@ public class TariffUtils {
                             String broGKEY = treeDetail.getNEXT_EMAPP_GKEY();
                             treeDetail = map.get(broGKEY);
                         }else {
+                            System.out.println("无符合条件的费收项目");
                             break;
                         }
                     }

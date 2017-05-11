@@ -31,12 +31,13 @@ public class MatchFeeUtils {
             con = DriverManager.getConnection(url, user, password);
 
             //查询客户基础合同下所有费目，与amount
-            String sql = "select bt.id,btr.amount,bc.contract_type from bil_tariff_rates btr,BIL_TARIFFS bt,BIL_CONTRACTS bc where btr.tariff_gkey = bt.gkey and btr.CONTRACT_GKEY = bc.gkey and bc.description ="+"'"+customerName+"'";
+            String sql = "select bt.id,bt.description,btr.amount,bc.contract_type from bil_tariff_rates btr,BIL_TARIFFS bt,BIL_CONTRACTS bc where btr.tariff_gkey = bt.gkey and btr.CONTRACT_GKEY = bc.gkey and bc.description ="+"'"+customerName+"'";
             pre = con.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()){
                 TariffDetail tariffDetailC = new TariffDetail();
-                tariffDetailC.setTariffName(rs.getString("ID"));
+                tariffDetailC.setTariffId(rs.getString("ID"));
+                tariffDetailC.setTariffName(rs.getString("DESCRIPTION"));
                 tariffDetailC.setValue(rs.getString("AMOUNT"));
                 tariffDetailC.setTariffType(rs.getString("CONTRACT_TYPE"));
                 allFee.add(tariffDetailC);
@@ -64,8 +65,9 @@ public class MatchFeeUtils {
             }
 
             for (TariffDetail tariffDetailF : allFee){
-                if (tariffDetailF.getTariffName().equals(eventfee)){
-                    tariffDetail.setTariffName(eventfee);
+                if (tariffDetailF.getTariffId().equals(eventfee)){
+                    tariffDetail.setTariffId(eventfee);
+                    tariffDetail.setTariffName(tariffDetailF.getTariffName());
                     System.out.println(tariffDetail.getTariffName());
                     tariffDetail.setValue(tariffDetailF.getValue());
                     if ("ADDENDUM".equals(tariffDetailF.getTariffType())){

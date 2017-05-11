@@ -3,6 +3,8 @@ package com.LWT.DataController;
 
 
 
+import com.LWT.Utils.LoginUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,13 +25,17 @@ public class LoginServlet extends HttpServlet {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
         HttpSession httpSession = req.getSession();
+
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
         String destServer = req.getParameter("destserver");
+        System.out.println(userName);
+        System.out.println(password);
         System.out.println(destServer);
         if(userName.equals("admin")){
             httpSession.setAttribute("username",userName);
             httpSession.setAttribute("password",password);
+            LoginUtils.setDestserver(destServer);
             resp.sendRedirect(req.getContextPath() + "/index.jsp");
         }
         else {

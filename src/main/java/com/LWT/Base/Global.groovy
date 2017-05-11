@@ -14,9 +14,9 @@ class Global {
     static OracleConn bulkOracleConnection = bulkConnection()
     static OracleConn n4OracleConnection = n4Connection()
 
-//    static N4Operator n4Operator = getN4Operator()
+    static N4Operator n4Operator = getN4Operator()
 
-    static N4Operator n4Operator = ConnectorFactory.createN4Operator("testserver");
+//    static N4Operator n4Operator = ConnectorFactory.createN4Operator("testserver");
 
     static String argoSQL = ""
 
@@ -59,12 +59,14 @@ class Global {
         System.out.println("n4数据库初始化开始")
         GlobalLogger.myLogger.info("Init n4Connection:")
         //　N4系统数据库
-//        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.110"
-        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.3.10" : "192.168.37.110"//鼎和汇本地N4
+        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.110"
+//        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.3.10" : "192.168.37.110"//鼎和汇本地N4
         def DB = "jdbc:oracle:thin:@" + IP + ":1521:n4"
         def USER = "n4user"
-        def PASSWORD = "n4user"
+        def PASSWORD = mainFrameParameter.p_IsTestEnv ?"n4user":"n4lwt"
         def DRIVER = 'oracle.jdbc.driver.OracleDriver'
+
+        println(DB+" user:"+USER+" pass:"+PASSWORD)
 
         OracleConn newConn = new OracleConn(DB, USER, PASSWORD, DRIVER)
         n4Connection = newConn.isConnected
@@ -76,8 +78,8 @@ class Global {
     private static N4Operator getN4Operator() {
         GlobalLogger.myLogger.info("Init N4PortConnection:")
         //N4系统连接
-//        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.112"
-        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.3.10" : "192.168.37.112"//鼎合汇本地N4
+        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.37.111" : "192.168.37.112"
+//        def IP = mainFrameParameter.p_IsTestEnv ? "192.168.3.10" : "192.168.37.112"//鼎合汇本地N4
         String ArgoServiceURL = "http://" + IP + ":9080/apex/services/argoservice"
         String OperatorId = "WZCT"
         String ComplexId = "WZT"

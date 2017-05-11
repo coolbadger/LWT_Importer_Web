@@ -1,5 +1,7 @@
 package com.LWT.ImporterUI;
 
+import com.LWT.Utils.LoginUtils;
+
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -18,7 +20,12 @@ public class MainFrameInfo {
     public String p_DateEnd;//结束日期
 
     public MainFrameInfo(){
-        p_IsTestEnv = true;
+        if ("testserver".equals(LoginUtils.getDestserver())){
+            p_IsTestEnv = true;
+        }else if ("productserver".equals(LoginUtils.getDestserver())){
+            p_IsTestEnv = false;
+        }
+
         p_IsDateEnable = false;
         p_IsWriteBack = false;
         p_IsUnitCount = false;
